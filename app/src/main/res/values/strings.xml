@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PokemonApi</string>
+    <string name="pokemon_number_pattern">#%s</string>
+    <string name="empty_description" />
+    <string name="height_pattern">%.1f m</string>
+    <string name="weight_pattern">%.1f kg</string>
+</resources>
