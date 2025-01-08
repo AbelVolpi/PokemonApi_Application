@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:backgroundTint="@color/light_gray"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="1dp">
 
-    <ImageView
-        android:id="@+id/pokemon_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/empty_description"
-        android:transitionName="pokemon_home_image" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/pokemon_name_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:maxWidth="200dp"
-        android:minWidth="100dp"
-        android:text=""
-        android:textAllCaps="true" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/pokemon_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/empty_description"
+            android:transitionName="pokemon_home_image" />
+
+        <TextView
+            android:id="@+id/pokemon_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-10dp"
+            android:gravity="center"
+            android:maxWidth="200dp"
+            android:minWidth="100dp"
+            android:text=""
+            android:textAllCaps="true" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

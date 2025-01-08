@@ -1,14 +1,19 @@
 package com.abelvolpi.pokemonapi.adapter
 
+import android.R
 import android.content.Context
+import android.graphics.Rect
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.abelvolpi.pokemonapi.databinding.HomeAdapterItemBinding
 import com.abelvolpi.pokemonapi.models.CustomImage
 import com.abelvolpi.pokemonapi.models.GenericPokemon
 import com.abelvolpi.pokemonapi.utils.setImageUsingGlide
+
 
 class HomeAdapter(
     private val onPokemonClick: (GenericPokemon?, CustomImage?) -> Unit,
@@ -55,4 +60,16 @@ class HomeAdapter(
         notifyDataSetChanged()
     }
 
+}
+
+
+class SpacesItemDecoration(private val space: Int) : ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect, view: View,
+        parent: RecyclerView, state: RecyclerView.State
+    ) {
+        outRect.right = space
+        outRect.bottom = space
+
+    }
 }

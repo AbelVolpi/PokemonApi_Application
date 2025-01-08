@@ -59,9 +59,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="35sp"
                 android:textStyle="bold"
+                tools:text="Blastoise"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView

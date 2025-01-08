@@ -1,5 +1,6 @@
 package com.abelvolpi.pokemonapi.ui.screens
 
+import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abelvolpi.pokemonapi.adapter.HomeAdapter
+import com.abelvolpi.pokemonapi.adapter.SpacesItemDecoration
 import com.abelvolpi.pokemonapi.api.ApiResponse
 import com.abelvolpi.pokemonapi.databinding.FragmentHomeBinding
 import com.abelvolpi.pokemonapi.models.CustomImage
@@ -45,6 +47,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     gridRecyclerView.visibility = View.VISIBLE
                 }
             }
+            val spacingInPixels: Int = 30
+            gridRecyclerView.addItemDecoration(SpacesItemDecoration(spacingInPixels))
 
             gridRecyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 3)
