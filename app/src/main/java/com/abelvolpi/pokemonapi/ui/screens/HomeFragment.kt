@@ -1,4 +1,4 @@
-package com.abelvolpi.pokemonapi.ui
+package com.abelvolpi.pokemonapi.ui.screens
 
 import android.os.Bundle
 import android.util.Log

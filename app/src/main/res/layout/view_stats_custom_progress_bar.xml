@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="15dp">
+
+        <TextView
+            android:id="@+id/statsNameTextView"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:gravity="start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="HP" />
+
+        <TextView
+            android:id="@+id/statsValueTextView"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:gravity="start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/statsNameTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="270" />
+
+        <ProgressBar
+            android:id="@+id/horizontalProgressBarStats"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:max="300"
+            android:progress="0"
+            android:progressDrawable="@drawable/custom_horizontal_progress_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/statsValueTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

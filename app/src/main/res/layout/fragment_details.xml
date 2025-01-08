@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
-    tools:context=".ui.DetailsFragment">
+    tools:context=".ui.screens.DetailsFragment">
 
     <ImageView
         android:id="@+id/arrow_back"
@@ -25,9 +25,9 @@
         android:id="@+id/pokemon_number_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="30dp"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/arrow_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/arrow_back" />
@@ -59,9 +59,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:textAlignment="center"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="35sp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -74,10 +74,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/pokemon_name_text_view" />
 
             <LinearLayout
+                android:id="@+id/height_and_weight_stats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/types_recycler_view">
@@ -100,7 +101,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black" />
-
                 </LinearLayout>
 
                 <View
@@ -127,8 +127,69 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black" />
-
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginVertical="20dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/height_and_weight_stats">
+
+                <TextView
+                    android:id="@+id/base_stats_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Base Stats"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/arrow_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/arrow_back" />
+
+                <com.abelvolpi.pokemonapi.ui.customviews.CustomHorizontalProgressView
+                    android:id="@+id/hpProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:maxValue="300"
+                    app:statsName="HP"
+                    app:progressColor="@color/fairy_color" />
+
+                <com.abelvolpi.pokemonapi.ui.customviews.CustomHorizontalProgressView
+                    android:id="@+id/attackProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:maxValue="300"
+                    app:statsName="ATK"
+                    app:progressColor="@color/ground_color" />
+
+                <com.abelvolpi.pokemonapi.ui.customviews.CustomHorizontalProgressView
+                    android:id="@+id/defenseProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:maxValue="300"
+                    app:statsName="DEF"
+                    app:progressColor="@color/water_color" />
+
+                <com.abelvolpi.pokemonapi.ui.customviews.CustomHorizontalProgressView
+                    android:id="@+id/speedProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:maxValue="300"
+                    app:statsName="SPD"
+                    app:progressColor="@color/steel_color" />
 
             </LinearLayout>
 
@@ -147,11 +208,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-
     <ImageView
         android:id="@+id/pokemon_image_view"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="-50dp"
         android:contentDescription="@string/empty_description"

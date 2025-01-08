@@ -1,4 +1,4 @@
-package com.abelvolpi.pokemonapi.ui
+package com.abelvolpi.pokemonapi.ui.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

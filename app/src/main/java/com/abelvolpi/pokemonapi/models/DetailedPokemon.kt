@@ -11,11 +11,16 @@ data class DetailedPokemon(
     @Json(name = "types") val types: List<Type>,
     @Json(name = "weight") val weight: Float,
     @Json(name = "height") val height: Float,
-//    @Json(name = "stats") val stats: ArrayList<Stat>,
+    @Json(name = "stats") val stats: List<StatItem>
+) : Parcelable
 
-//    val hp: String,
-//    val atk: String,
-//    val def: String,
-//    val spd: String,
-//    val exp: String
+@Parcelize
+data class StatItem(
+    @Json(name = "base_stat") val baseStat: Int,
+    @Json(name = "stat") val stat: Stat
+) : Parcelable
+
+@Parcelize
+data class Stat(
+    @Json(name = "name") val name: String,
 ) : Parcelable

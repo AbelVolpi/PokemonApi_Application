@@ -1,4 +1,4 @@
-package com.abelvolpi.pokemonapi.ui
+package com.abelvolpi.pokemonapi.ui.screens
 
 import android.os.Bundle
 import android.view.View
@@ -35,12 +35,12 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
 
             argsGenericPokemon?.let { genericPokemon ->
                 sendPokemonDetailsRequest(genericPokemon.name)
-                pokemonNumberTextView.text = getString(R.string.pokemon_number_pattern, genericPokemon.number)
+                pokemonNumberTextView.text =
+                    getString(R.string.pokemon_number_pattern, genericPokemon.number)
             }
 
             argsImage?.let { pokemonImage ->
                 pokemonImageView.setImageBitmap(pokemonImage.image)
-
                 Palette.Builder(pokemonImage.image).generate { palette ->
                     palette?.dominantSwatch?.rgb?.let { it ->
                         mainLayout.setBackgroundColor(it)
@@ -69,6 +69,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                 is ApiResponse.Success -> {
                     updateScreen(apiResponse.body)
                 }
+
                 is ApiResponse.Failure -> {
                     showErrorFeedback()
                 }
@@ -78,7 +79,8 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
 
     private fun updateScreen(pokemon: DetailedPokemon) {
         with(binding) {
-            pokemonNameTextView.text = pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+            pokemonNameTextView.text =
+                pokemon.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
             pokemonHeightTextView.text = getString(R.string.height_pattern, (pokemon.height / 10))
             pokemonWeightTextView.text = getString(R.string.weight_pattern, (pokemon.weight / 10))
 
@@ -91,6 +93,14 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                 layoutManager = myLayoutManager
                 adapter = PokemonTypeAdapter(pokemon.types)
             }
+            val hpValue = pokemon.stats.firstOrNull { it.stat.name == "hp" }?.baseStat ?: 0
+            val attackValue = pokemon.stats.firstOrNull { it.stat.name == "attack" }?.baseStat ?: 0
+            val defenseValue = pokemon.stats.firstOrNull { it.stat.name == "defense" }?.baseStat ?: 0
+            val speedValue = pokemon.stats.firstOrNull { it.stat.name == "speed" }?.baseStat ?: 0
+            hpProgressBar.setProgress(hpValue)
+            attackProgressBar.setProgress(attackValue)
+            defenseProgressBar.setProgress(defenseValue)
+            speedProgressBar.setProgress(speedValue)
         }
     }
 

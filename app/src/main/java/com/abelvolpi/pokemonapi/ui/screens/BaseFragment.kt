@@ -1,4 +1,4 @@
-package com.abelvolpi.pokemonapi.ui
+package com.abelvolpi.pokemonapi.ui.screens
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,5 +23,4 @@ abstract class BaseFragment<T : ViewBinding>(
         _binding = null
         super.onDestroyView()
     }
-
 }
