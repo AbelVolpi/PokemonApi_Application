@@ -4,20 +4,27 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.kapt'
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.abelvolpi.pokemonapi"
+        namespace 'com.abelvolpi.pokemonapi'
         minSdk 21
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "BASE_URL", "$BASE_URL")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     viewBinding {
@@ -33,11 +40,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 }
 
@@ -55,8 +62,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Navigation Component
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.0'
 
     //Palette
     implementation 'androidx.palette:palette-ktx:1.0.0'
@@ -77,5 +84,11 @@ dependencies {
     //FlexBoxLayout
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
 
+    //Hilt - Dependency Injection
+    implementation 'com.google.dagger:hilt-android:2.51.1'
+    kapt 'com.google.dagger:hilt-android-compiler:2.51.1'
+}
 
+kapt {
+    correctErrorTypes = true
 }
