@@ -2,7 +2,9 @@ package com.abelvolpi.pokemonapi
 
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MainApplication : Application() {
 
     init {
@@ -16,5 +18,4 @@ class MainApplication : Application() {
             return mainApplicationInstance.applicationContext
         }
     }
-
 }

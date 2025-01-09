@@ -5,10 +5,7 @@ object Constants {
     const val LIMIT_PER_REQUEST = 20
 
     object URLS {
-        const val POKEMON = "pokemon"
-        const val POKEMON_INFO = "pokemon/{pokemon_name}"
         const val POKEMON_IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
         const val PNG = ".png"
     }
-
 }

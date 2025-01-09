@@ -4,8 +4,9 @@ import android.content.Context
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import com.abelvolpi.pokemonapi.R
-import com.abelvolpi.pokemonapi.models.Type
+import com.abelvolpi.pokemonapi.data.models.Type
 
+// isso otimiza usando um hashmap?
 fun Type.parseTypeToColor(context: Context): Int {
     return when (this.type.typeName) {
         "bug" -> ContextCompat.getColor(context, R.color.bug_color)

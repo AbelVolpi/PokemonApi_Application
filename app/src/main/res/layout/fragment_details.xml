@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
-    tools:context=".ui.screens.DetailsFragment">
+    tools:context=".presentation.screens.details.DetailsFragment">
 
     <ImageView
         android:id="@+id/arrow_back"
@@ -156,7 +156,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/arrow_back" />
 
-                <com.abelvolpi.pokemonapi.ui.customviews.CustomHorizontalProgressView
+                <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
                     android:id="@+id/hpProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
                     app:statsName="HP"
                     app:progressColor="@color/fairy_color" />
 
-                <com.abelvolpi.pokemonapi.ui.customviews.CustomHorizontalProgressView
+                <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
                     android:id="@+id/attackProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                     app:statsName="ATK"
                     app:progressColor="@color/ground_color" />
 
-                <com.abelvolpi.pokemonapi.ui.customviews.CustomHorizontalProgressView
+                <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
                     android:id="@+id/defenseProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
                     app:statsName="DEF"
                     app:progressColor="@color/water_color" />
 
-                <com.abelvolpi.pokemonapi.ui.customviews.CustomHorizontalProgressView
+                <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
                     android:id="@+id/speedProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

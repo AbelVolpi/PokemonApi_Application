@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokemonApi">
         <activity
-            android:name="com.abelvolpi.pokemonapi.ui.screens.MainActivity"
+            android:name="com.abelvolpi.pokemonapi.presentation.screens.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
