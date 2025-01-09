@@ -15,7 +15,6 @@ import com.abelvolpi.pokemonapi.databinding.FragmentHomeBinding
 import com.abelvolpi.pokemonapi.data.models.CustomImage
 import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.presentation.screens.BaseFragment
-import com.abelvolpi.pokemonapi.presentation.screens.HomeFragmentDirections
 import com.abelvolpi.pokemonapi.utils.Constants.LIMIT_PER_REQUEST
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

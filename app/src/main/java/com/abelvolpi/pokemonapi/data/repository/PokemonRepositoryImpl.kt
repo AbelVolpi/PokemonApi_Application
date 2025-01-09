@@ -12,25 +12,15 @@ class PokemonRepositoryImpl(
     private val pokemonService: PokemonService,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : PokemonRepository {
-    override suspend fun getPokemonList(offset: Int?, limit: Int?): Result<PokemonListResponse> {
+    override suspend fun getPokemonList(offset: Int?, limit: Int?): PokemonListResponse {
         return withContext(ioDispatcher) {
-            try {
-                val response = pokemonService.getPokemonList(offset, limit)
-                Result.success(response)
-            } catch (e: Exception) {
-                Result.failure(e)
-            }
+            pokemonService.getPokemonList(offset, limit)
         }
     }
 
-    override suspend fun getPokemonInfo(pokemonName: String): Result<DetailedPokemon> {
+    override suspend fun getPokemonInfo(pokemonName: String): DetailedPokemon {
         return withContext(ioDispatcher) {
-            try {
-                val response = pokemonService.getPokemonInfo(pokemonName)
-                Result.success(response)
-            } catch (e: Exception) {
-                Result.failure(e)
-            }
+            pokemonService.getPokemonInfo(pokemonName)
         }
     }
 }

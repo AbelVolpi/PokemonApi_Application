@@ -8,6 +8,6 @@ class GetPokemonDetailsUseCase @Inject constructor(
     private val repository: PokemonRepository
 ) {
     suspend operator fun invoke(pokemonName: String): DetailedPokemon {
-        return repository.getPokemonInfo(pokemonName).getOrThrow()
+        return repository.getPokemonInfo(pokemonName)
     }
 }

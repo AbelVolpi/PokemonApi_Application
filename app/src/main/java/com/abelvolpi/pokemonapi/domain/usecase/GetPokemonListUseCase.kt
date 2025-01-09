@@ -8,6 +8,6 @@ class GetPokemonListUseCase @Inject constructor(
     private val repository: PokemonRepository
 ) {
     suspend operator fun invoke(offset: Int?, limit: Int?): PokemonListResponse {
-        return repository.getPokemonList(offset, limit).getOrThrow()
+        return repository.getPokemonList(offset, limit)
     }
 }
