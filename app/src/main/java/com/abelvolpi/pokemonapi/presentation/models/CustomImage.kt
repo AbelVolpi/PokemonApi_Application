@@ -1,4 +1,4 @@
-package com.abelvolpi.pokemonapi.data.models
+package com.abelvolpi.pokemonapi.presentation.models
 
 import android.graphics.Bitmap
 import android.os.Parcelable

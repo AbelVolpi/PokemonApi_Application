@@ -12,7 +12,7 @@ import com.abelvolpi.pokemonapi.presentation.adapters.HomeAdapter
 import com.abelvolpi.pokemonapi.presentation.adapters.SpacesItemDecoration
 import com.abelvolpi.pokemonapi.presentation.UiState
 import com.abelvolpi.pokemonapi.databinding.FragmentHomeBinding
-import com.abelvolpi.pokemonapi.data.models.CustomImage
+import com.abelvolpi.pokemonapi.presentation.models.CustomImage
 import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.presentation.screens.BaseFragment
 import com.abelvolpi.pokemonapi.utils.Constants.LIMIT_PER_REQUEST

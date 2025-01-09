@@ -11,7 +11,7 @@ import androidx.palette.graphics.Palette
 import com.abelvolpi.pokemonapi.presentation.adapters.PokemonTypeAdapter
 import com.abelvolpi.pokemonapi.presentation.UiState
 import com.abelvolpi.pokemonapi.databinding.FragmentDetailsBinding
-import com.abelvolpi.pokemonapi.data.models.CustomImage
+import com.abelvolpi.pokemonapi.presentation.models.CustomImage
 import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
 import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.presentation.screens.BaseFragment

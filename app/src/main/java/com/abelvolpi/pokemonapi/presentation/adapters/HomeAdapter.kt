@@ -9,10 +9,9 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.abelvolpi.pokemonapi.databinding.HomeAdapterItemBinding
-import com.abelvolpi.pokemonapi.data.models.CustomImage
+import com.abelvolpi.pokemonapi.presentation.models.CustomImage
 import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.utils.setImageUsingGlide
-
 
 class HomeAdapter(
     private val onPokemonClick: (GenericPokemon?, CustomImage?) -> Unit,
