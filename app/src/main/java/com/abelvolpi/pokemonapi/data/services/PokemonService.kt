@@ -1,4 +1,4 @@
-package com.abelvolpi.pokemonapi.data.api.services
+package com.abelvolpi.pokemonapi.data.services
 
 import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
 import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
