@@ -3,14 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/pokemon_red_2"
     android:layout_height="match_parent"
     tools:context=".presentation.screens.home.HomeFragment">
 
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:paddingTop="24dp"
+        android:layout_height="100dp"
         android:title="Pokedex"
+        android:titleTextColor="@color/white"
+        android:background="@color/pokemon_red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
