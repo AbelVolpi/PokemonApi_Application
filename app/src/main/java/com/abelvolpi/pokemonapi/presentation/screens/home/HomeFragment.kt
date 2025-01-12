@@ -3,8 +3,11 @@ package com.abelvolpi.pokemonapi.presentation.screens.home
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +31,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         findNavController()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sendRequest(homeViewModel.offSet)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -37,7 +45,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         initLayout()
         observePokemonListState()
-        sendRequest(homeViewModel.offSet)
     }
 
     private fun initLayout() {
@@ -45,6 +52,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             val spacingInPixels = 30
             gridRecyclerView.addItemDecoration(SpacesItemDecoration(spacingInPixels))
 
+            postponeEnterTransition()
+            gridRecyclerView.doOnPreDraw {
+                startPostponedEnterTransition()
+            }
             gridRecyclerView.apply {
                 layoutManager = GridLayoutManager(requireContext(), 3)
                 adapter = pokemonAdapter
@@ -73,7 +84,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun observePokemonListState() {
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.pokemonListState.collect { state ->
-                when(state){
+                when(state) {
                     is UiState.Loading -> {
                         binding.homeProgressBar.visibility = View.VISIBLE
                         binding.gridRecyclerView.visibility = View.GONE
@@ -98,12 +109,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         homeViewModel.fetchPokemonList(offSet, LIMIT_PER_REQUEST)
     }
 
-    private fun onPokemonClick(genericPokemon: GenericPokemon?, pokemonImageBitmap: CustomImage?) {
+    private fun onPokemonClick(
+        genericPokemon: GenericPokemon?,
+        pokemonImageBitmap: CustomImage?,
+        imageView: ImageView
+    ) {
+        val extras = FragmentNavigatorExtras(
+            imageView to genericPokemon?.number!!
+        )
         navController.navigate(
             HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
                 pokemonImageBitmap,
                 genericPokemon
-            )
+            ),
+            extras
         )
     }
 }
