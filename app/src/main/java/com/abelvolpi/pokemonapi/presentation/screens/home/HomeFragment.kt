@@ -47,7 +47,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         observePokemonListState()
     }
 
-    private fun verifyExistingData(savedInstanceState: Bundle?){
+    private fun verifyExistingData(savedInstanceState: Bundle?) {
         if (homeViewModel.pokemonList.isNotEmpty() && savedInstanceState != null) {
             pokemonAdapter.addMorePokemon(homeViewModel.pokemonList)
         }
@@ -90,18 +90,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun observePokemonListState() {
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.newPokemonsListState.collect { state ->
-                when(state) {
+                when (state) {
                     is UiState.Loading -> {}
-                    is UiState.Success -> {
-                        pokemonAdapter.addMorePokemon(state.data.results)
-                        homeViewModel.offSet += LIMIT_PER_REQUEST
-                    }
-                    is UiState.Failure -> {
-                        Log.e("HOME_ERROR", state.exception.toString())
-                    }
+                    is UiState.Success -> { handleSuccessState(state.data.results) }
+                    is UiState.Failure -> { Log.e("HOME_ERROR", state.exception.toString()) }
                 }
             }
         }
+    }
+
+    private fun handleSuccessState(pokemonList: List<GenericPokemon>) {
+        if (verifyIsNewPokemonBatch(pokemonList)) {
+            pokemonAdapter.addMorePokemon(pokemonList)
+            homeViewModel.offSet += LIMIT_PER_REQUEST
+        }
+    }
+
+    private fun verifyIsNewPokemonBatch(results: List<GenericPokemon>): Boolean {
+        val firstPokemon = results.firstOrNull() ?: return false
+        return homeViewModel.pokemonList.none { it.number == firstPokemon.number }
     }
 
     private fun sendRequest(offSet: Int) {

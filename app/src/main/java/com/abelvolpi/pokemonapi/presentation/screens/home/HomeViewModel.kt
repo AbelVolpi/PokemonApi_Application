@@ -29,9 +29,9 @@ class HomeViewModel @Inject constructor(
             try {
                 _newPokemonsListState.value = UiState.Loading
                 val response = getPokemonListUseCase(offset, limit)
+                _newPokemonsListState.value = UiState.Success(response)
 
                 _pokemonList.addAll(response.results)
-                _newPokemonsListState.value = UiState.Success(response)
             } catch (e: Throwable) {
                 _newPokemonsListState.value = UiState.Failure(e)
             }
