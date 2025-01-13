@@ -2,6 +2,7 @@ package com.abelvolpi.pokemonapi.presentation.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.presentation.UiState
 import com.abelvolpi.pokemonapi.domain.usecase.GetPokemonListUseCase
 import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
@@ -17,17 +18,22 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     var offSet: Int = 0
-    private val _pokemonListState = MutableStateFlow<UiState<PokemonListResponse>>(UiState.Loading)
-    val pokemonListState: StateFlow<UiState<PokemonListResponse>> = _pokemonListState
+    private val _newPokemonsListState = MutableStateFlow<UiState<PokemonListResponse>>(UiState.Loading)
+    val newPokemonsListState: StateFlow<UiState<PokemonListResponse>> = _newPokemonsListState
+
+    private val _pokemonList = mutableListOf<GenericPokemon>()
+    val pokemonList: List<GenericPokemon> get() = _pokemonList
 
     fun fetchPokemonList(offset: Int?, limit: Int?) {
         viewModelScope.launch {
             try {
-                _pokemonListState.value = UiState.Loading
+                _newPokemonsListState.value = UiState.Loading
                 val response = getPokemonListUseCase(offset, limit)
-                _pokemonListState.value = UiState.Success(response)
+
+                _pokemonList.addAll(response.results)
+                _newPokemonsListState.value = UiState.Success(response)
             } catch (e: Throwable) {
-                _pokemonListState.value = UiState.Failure(e)
+                _newPokemonsListState.value = UiState.Failure(e)
             }
         }
     }

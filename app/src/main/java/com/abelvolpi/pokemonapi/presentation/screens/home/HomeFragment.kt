@@ -42,9 +42,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         if (!::pokemonAdapter.isInitialized)
             pokemonAdapter =
                 HomeAdapter(context = requireContext(), onPokemonClick = ::onPokemonClick)
-
         initLayout()
+        verifyExistingData(savedInstanceState)
         observePokemonListState()
+    }
+
+    private fun verifyExistingData(savedInstanceState: Bundle?){
+        if (homeViewModel.pokemonList.isNotEmpty() && savedInstanceState != null) {
+            pokemonAdapter.addMorePokemon(homeViewModel.pokemonList)
+        }
     }
 
     private fun initLayout() {
@@ -68,7 +74,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             val pastVisibleItems =
                                 (layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
 
-                            if (homeViewModel.pokemonListState.value != UiState.Loading &&
+                            if (homeViewModel.newPokemonsListState.value != UiState.Loading &&
                                 (visibleCount + pastVisibleItems) >= totalItemCount
                             ) {
                                 sendRequest(homeViewModel.offSet)
@@ -83,21 +89,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun observePokemonListState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.pokemonListState.collect { state ->
+            homeViewModel.newPokemonsListState.collect { state ->
                 when(state) {
-                    is UiState.Loading -> {
-                        binding.homeProgressBar.visibility = View.VISIBLE
-                        binding.gridRecyclerView.visibility = View.GONE
-                    }
+                    is UiState.Loading -> {}
                     is UiState.Success -> {
-                        binding.homeProgressBar.visibility = View.GONE
-                        binding.gridRecyclerView.visibility = View.VISIBLE
                         pokemonAdapter.addMorePokemon(state.data.results)
                         homeViewModel.offSet += LIMIT_PER_REQUEST
                     }
                     is UiState.Failure -> {
-                        binding.homeProgressBar.visibility = View.GONE
-                        binding.gridRecyclerView.visibility = View.VISIBLE
                         Log.e("HOME_ERROR", state.exception.toString())
                     }
                 }

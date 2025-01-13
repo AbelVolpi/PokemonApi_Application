@@ -58,8 +58,10 @@ class HomeAdapter(
     override fun getItemCount() = pokemonList.size
 
     fun addMorePokemon(newGenericPokemonList: List<GenericPokemon>) {
+        val startIndex = pokemonList.size
+        val lastIndex = newGenericPokemonList.size
         pokemonList.addAll(newGenericPokemonList)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(startIndex, lastIndex)
     }
 }
 
