@@ -17,6 +17,7 @@ import com.abelvolpi.pokemonapi.presentation.models.CustomImage
 import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
 import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.presentation.screens.BaseFragment
+import com.abelvolpi.pokemonapi.utils.getBundleParcelable
 import com.google.android.flexbox.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -51,8 +52,8 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
 
     private fun initViews() {
         with(binding) {
-            val argsGenericPokemon = arguments?.getParcelable<GenericPokemon>("generic_pokemon")
-            val argsImage = arguments?.getParcelable<CustomImage>("pokemon_image")
+            val argsGenericPokemon = arguments?.getBundleParcelable<GenericPokemon>("generic_pokemon")
+            val argsImage = arguments?.getBundleParcelable<CustomImage>("pokemon_image")
 
             argsGenericPokemon?.let { genericPokemon ->
                 fetchPokemonDetails(genericPokemon.name)
