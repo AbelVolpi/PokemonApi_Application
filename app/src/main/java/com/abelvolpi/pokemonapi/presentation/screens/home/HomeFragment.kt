@@ -11,12 +11,12 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.abelvolpi.pokemonapi.data.models.GenericPokemon
+import com.abelvolpi.pokemonapi.databinding.FragmentHomeBinding
+import com.abelvolpi.pokemonapi.presentation.UiState
 import com.abelvolpi.pokemonapi.presentation.adapters.HomeAdapter
 import com.abelvolpi.pokemonapi.presentation.adapters.SpacesItemDecoration
-import com.abelvolpi.pokemonapi.presentation.UiState
-import com.abelvolpi.pokemonapi.databinding.FragmentHomeBinding
 import com.abelvolpi.pokemonapi.presentation.models.CustomImage
-import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.presentation.screens.BaseFragment
 import com.abelvolpi.pokemonapi.utils.Constants.LIMIT_PER_REQUEST
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,9 +39,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (!::pokemonAdapter.isInitialized)
+        if (!::pokemonAdapter.isInitialized) {
             pokemonAdapter =
                 HomeAdapter(context = requireContext(), onPokemonClick = ::onPokemonClick)
+        }
         initLayout()
         verifyExistingData(savedInstanceState)
         observePokemonListState()
@@ -67,7 +68,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 adapter = pokemonAdapter
                 addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-
                         if (dy > 0) {
                             val visibleCount = (layoutManager as GridLayoutManager).childCount
                             val totalItemCount = (layoutManager as GridLayoutManager).itemCount
@@ -92,8 +92,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             homeViewModel.newPokemonsListState.collect { state ->
                 when (state) {
                     is UiState.Loading -> {}
-                    is UiState.Success -> { handleSuccessState(state.data.results) }
-                    is UiState.Failure -> { Log.e("HOME_ERROR", state.exception.toString()) }
+                    is UiState.Success -> {
+                        handleSuccessState(state.data.results)
+                    }
+                    is UiState.Failure -> {
+                        Log.e("HOME_ERROR", state.exception.toString())
+                    }
                 }
             }
         }

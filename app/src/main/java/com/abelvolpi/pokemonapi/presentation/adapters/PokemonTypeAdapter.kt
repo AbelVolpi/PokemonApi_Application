@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abelvolpi.pokemonapi.MainApplication
-import com.abelvolpi.pokemonapi.databinding.TypeAdapterItemBinding
 import com.abelvolpi.pokemonapi.data.models.Type
+import com.abelvolpi.pokemonapi.databinding.TypeAdapterItemBinding
 import com.abelvolpi.pokemonapi.utils.parseTypeToColor
 import java.util.*
 
@@ -39,5 +39,4 @@ class PokemonTypeAdapter(
     }
 
     override fun getItemCount() = typeList.size
-
 }

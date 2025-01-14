@@ -1,7 +1,7 @@
 package com.abelvolpi.pokemonapi.presentation.screens
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.abelvolpi.pokemonapi.R
 import dagger.hilt.android.AndroidEntryPoint
 

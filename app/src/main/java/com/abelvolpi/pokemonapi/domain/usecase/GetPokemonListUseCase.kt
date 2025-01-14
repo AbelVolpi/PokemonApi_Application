@@ -1,7 +1,7 @@
 package com.abelvolpi.pokemonapi.domain.usecase
 
-import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
 import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
+import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
 import javax.inject.Inject
 
 class GetPokemonListUseCase @Inject constructor(

@@ -75,7 +75,6 @@ class PokemonRepositoryImplTest {
             assert(response == exception)
         }
 
-
     @Test
     fun `should return success when getPokemonInfo call PokemonService with correct parameters`() =
         runTest {

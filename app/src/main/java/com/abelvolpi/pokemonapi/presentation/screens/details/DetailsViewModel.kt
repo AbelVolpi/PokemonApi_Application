@@ -2,9 +2,9 @@ package com.abelvolpi.pokemonapi.presentation.screens.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abelvolpi.pokemonapi.presentation.UiState
-import com.abelvolpi.pokemonapi.domain.usecase.GetPokemonDetailsUseCase
 import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
+import com.abelvolpi.pokemonapi.domain.usecase.GetPokemonDetailsUseCase
+import com.abelvolpi.pokemonapi.presentation.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

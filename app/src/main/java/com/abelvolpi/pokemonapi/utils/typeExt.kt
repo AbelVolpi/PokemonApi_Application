@@ -10,7 +10,7 @@ import com.abelvolpi.pokemonapi.data.models.Type
 fun Type.parseTypeToColor(context: Context): Int {
     return when (this.type.typeName) {
         "bug" -> ContextCompat.getColor(context, R.color.bug_color)
-        "dark" ->  ContextCompat.getColor(context, R.color.dark_color)
+        "dark" -> ContextCompat.getColor(context, R.color.dark_color)
         "dragon" -> ContextCompat.getColor(context, R.color.dragon_color)
         "electric" -> ContextCompat.getColor(context, R.color.electric_color)
         "fairy" -> ContextCompat.getColor(context, R.color.fairy_color)

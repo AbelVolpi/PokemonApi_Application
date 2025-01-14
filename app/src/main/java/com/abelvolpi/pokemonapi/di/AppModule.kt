@@ -1,9 +1,9 @@
 package com.abelvolpi.pokemonapi.di
 
-import com.abelvolpi.pokemonapi.data.services.PokemonService
 import com.abelvolpi.pokemonapi.data.repository.PokemonRepositoryImpl
-import com.abelvolpi.pokemonapi.domain.usecase.GetPokemonListUseCase
+import com.abelvolpi.pokemonapi.data.services.PokemonService
 import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
+import com.abelvolpi.pokemonapi.domain.usecase.GetPokemonListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,21 +15,15 @@ import retrofit2.Retrofit
 object AppModule {
 
     @Provides
-    fun providePokemonService(retrofit: Retrofit): PokemonService {
-        return retrofit.create(PokemonService::class.java)
-    }
+    fun providePokemonService(retrofit: Retrofit): PokemonService = retrofit.create(PokemonService::class.java)
 
     @Provides
     fun providePokemonRepository(
         pokemonService: PokemonService
-    ): PokemonRepository {
-        return PokemonRepositoryImpl(pokemonService)
-    }
+    ): PokemonRepository = PokemonRepositoryImpl(pokemonService)
 
     @Provides
     fun provideGetPokemonListUseCase(
         repository: PokemonRepository
-    ): GetPokemonListUseCase {
-        return GetPokemonListUseCase(repository)
-    }
+    ): GetPokemonListUseCase = GetPokemonListUseCase(repository)
 }

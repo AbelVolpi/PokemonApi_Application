@@ -1,9 +1,9 @@
 package com.abelvolpi.pokemonapi.data.repository
 
-import com.abelvolpi.pokemonapi.data.services.PokemonService
-import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
 import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
 import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
+import com.abelvolpi.pokemonapi.data.services.PokemonService
+import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

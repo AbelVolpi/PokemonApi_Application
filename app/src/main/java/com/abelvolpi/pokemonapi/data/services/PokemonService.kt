@@ -18,5 +18,4 @@ interface PokemonService {
     suspend fun getPokemonInfo(
         @Path("pokemon_name") pokemonName: String
     ): DetailedPokemon
-
 }

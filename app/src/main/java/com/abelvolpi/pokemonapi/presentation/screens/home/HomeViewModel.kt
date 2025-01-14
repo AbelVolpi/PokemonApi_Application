@@ -3,9 +3,9 @@ package com.abelvolpi.pokemonapi.presentation.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abelvolpi.pokemonapi.data.models.GenericPokemon
-import com.abelvolpi.pokemonapi.presentation.UiState
-import com.abelvolpi.pokemonapi.domain.usecase.GetPokemonListUseCase
 import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
+import com.abelvolpi.pokemonapi.domain.usecase.GetPokemonListUseCase
+import com.abelvolpi.pokemonapi.presentation.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
