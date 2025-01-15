@@ -15,7 +15,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="HP" />
+            tools:text="@string/hp_stat" />
 
         <TextView
             android:id="@+id/statsValueTextView"
@@ -25,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/statsNameTextView"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="270" />
+            tools:text="@string/stats_value_test" />
 
         <ProgressBar
             android:id="@+id/horizontalProgressBarStats"

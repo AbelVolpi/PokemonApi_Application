@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <ImageView
             android:id="@+id/pokemon_image"
             android:layout_width="100dp"
@@ -32,8 +31,9 @@
             android:gravity="center"
             android:maxWidth="200dp"
             android:minWidth="100dp"
-            android:text=""
+            android:text="@string/pokemon_name_test"
             android:textAllCaps="true" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

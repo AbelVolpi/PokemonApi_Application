@@ -4,4 +4,21 @@
     <string name="empty_description" />
     <string name="height_pattern">%.1f m</string>
     <string name="weight_pattern">%.1f kg</string>
+
+    <!--    Details Fragment-->
+    <string name="base_stats">Base Stats</string>
+    <string name="hp_stat">HP</string>
+    <string name="atk_stat">ATK</string>
+    <string name="def_stat">DEF</string>
+    <string name="spd_stat">SPD</string>
+
+    <!--    Home Fragment-->
+    <string name="pokedex_title">Pokedex</string>
+
+    <!--    UI Size Tests-->
+    <string name="category_long_name_test">Category Long Name Test</string>
+    <string name="stats_value_test">270</string>
+    <string name="pokemon_name_test">Charmander</string>
+    <string name="pokemon_height_test">1.7m</string>
+    <string name="pokemon_weight_test">90.5m</string>
 </resources>

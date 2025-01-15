@@ -148,7 +148,7 @@
                     android:id="@+id/base_stats_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Base Stats"
+                    android:text="@string/base_stats"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="15dp"
@@ -161,8 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    app:maxValue="300"
-                    app:statsName="HP"
+                    app:statsName="@string/hp_stat"
                     app:progressColor="@color/fairy_color" />
 
                 <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
@@ -170,8 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    app:maxValue="300"
-                    app:statsName="ATK"
+                    app:statsName="@string/atk_stat"
                     app:progressColor="@color/ground_color" />
 
                 <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
@@ -179,8 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    app:maxValue="300"
-                    app:statsName="DEF"
+                    app:statsName="@string/def_stat"
                     app:progressColor="@color/water_color" />
 
                 <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
@@ -188,8 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    app:maxValue="300"
-                    app:statsName="SPD"
+                    app:statsName="@string/spd_stat"
                     app:progressColor="@color/steel_color" />
 
             </LinearLayout>

@@ -25,10 +25,9 @@
             android:background="@color/black"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            tools:text="category_testttttttttttt"
+            tools:text="@string/category_long_name_test"
             android:textColor="@color/white" />
 
     </androidx.cardview.widget.CardView>
-
 
 </LinearLayout>
