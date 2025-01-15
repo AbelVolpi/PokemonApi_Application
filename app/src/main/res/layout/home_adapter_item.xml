@@ -2,12 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_layout"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
+    android:layout_width="@dimen/small_card_size"
+    android:layout_height="@dimen/small_card_size"
     android:backgroundTint="@color/light_gray"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="1dp">
+    app:cardCornerRadius="@dimen/small_card_view_corner_radius"
+    app:cardElevation="@dimen/small_card_elevation">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/pokemon_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/pokemon_small_image_size"
+            android:layout_height="@dimen/pokemon_small_image_size"
             android:layout_gravity="center"
             android:contentDescription="@string/empty_description"
             android:transitionName="pokemon_home_image" />

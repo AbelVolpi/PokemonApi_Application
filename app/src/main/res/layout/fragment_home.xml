@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/pokemon_red_2"
     android:layout_height="match_parent"
+    android:background="@color/pokemon_red_2"
     tools:context=".presentation.screens.home.HomeFragment">
 
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:paddingTop="24dp"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/pokemon_red"
+        android:paddingTop="@dimen/toolbar_padding_top"
         android:title="@string/pokedex_title"
         android:titleTextColor="@color/white"
-        android:background="@color/pokemon_red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,22 +23,11 @@
         android:id="@+id/grid_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:listitem="@layout/home_adapter_item" />
-
-    <ProgressBar
-        android:id="@+id/home_progress_bar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:indeterminateTint="@color/black"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

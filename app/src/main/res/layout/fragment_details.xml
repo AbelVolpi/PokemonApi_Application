@@ -12,11 +12,11 @@
         android:id="@+id/arrow_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_large"
         android:background="?selectableItemBackgroundBorderless"
         android:contentDescription="@string/empty_description"
-        android:padding="5dp"
+        android:padding="@dimen/padding_small"
         android:src="@drawable/arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         android:id="@+id/pokemon_number_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="@dimen/margin_large"
         android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/arrow_back"
@@ -57,19 +57,19 @@
                 android:id="@+id/pokemon_name_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="@dimen/margin_large"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="35sp"
                 android:textStyle="bold"
-                tools:text="Blastoise"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/pokemon_name_test" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/types_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/margin_between_components"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pokemon_name_text_view" />
@@ -78,8 +78,8 @@
                 android:id="@+id/height_and_weight_stats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="@dimen/margin_horizontally_details_screen"
+                android:layout_marginTop="@dimen/margin_between_components"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/types_recycler_view">
@@ -92,8 +92,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="@dimen/stats_image_size"
+                        android:layout_height="@dimen/stats_image_size"
                         android:contentDescription="@string/empty_description"
                         android:src="@drawable/ic_height" />
 
@@ -101,7 +101,8 @@
                         android:id="@+id/pokemon_height_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        tools:text="@string/pokemon_height_test" />
                 </LinearLayout>
 
                 <View
@@ -118,8 +119,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="@dimen/stats_image_size"
+                        android:layout_height="@dimen/stats_image_size"
                         android:contentDescription="@string/empty_description"
                         android:src="@drawable/ic_weight" />
 
@@ -127,7 +128,8 @@
                         android:id="@+id/pokemon_weight_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        tools:text="@string/pokemon_weight_test" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -135,8 +137,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="35dp"
-                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="@dimen/margin_horizontally_details_screen"
+                android:layout_marginVertical="@dimen/margin_between_components"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -148,10 +150,10 @@
                     android:id="@+id/base_stats_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:text="@string/base_stats"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="@+id/arrow_back"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/arrow_back" />
@@ -160,33 +162,33 @@
                     android:id="@+id/hpProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:statsName="@string/hp_stat"
-                    app:progressColor="@color/fairy_color" />
+                    android:layout_marginBottom="@dimen/custom_progress_margin_bottom"
+                    app:progressColor="@color/fairy_color"
+                    app:statsName="@string/hp_stat" />
 
                 <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
                     android:id="@+id/attackProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:statsName="@string/atk_stat"
-                    app:progressColor="@color/ground_color" />
+                    android:layout_marginBottom="@dimen/custom_progress_margin_bottom"
+                    app:progressColor="@color/ground_color"
+                    app:statsName="@string/atk_stat" />
 
                 <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
                     android:id="@+id/defenseProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:statsName="@string/def_stat"
-                    app:progressColor="@color/water_color" />
+                    android:layout_marginBottom="@dimen/custom_progress_margin_bottom"
+                    app:progressColor="@color/water_color"
+                    app:statsName="@string/def_stat" />
 
                 <com.abelvolpi.pokemonapi.presentation.customviews.CustomHorizontalProgressView
                     android:id="@+id/speedProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    app:statsName="@string/spd_stat"
-                    app:progressColor="@color/steel_color" />
+                    android:layout_marginBottom="@dimen/custom_progress_margin_bottom"
+                    app:progressColor="@color/steel_color"
+                    app:statsName="@string/spd_stat" />
 
             </LinearLayout>
 
@@ -207,8 +209,8 @@
 
     <ImageView
         android:id="@+id/pokemon_image_view"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/pokemon_large_image_size"
+        android:layout_height="@dimen/pokemon_large_image_size"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="-50dp"
         android:contentDescription="@string/empty_description"

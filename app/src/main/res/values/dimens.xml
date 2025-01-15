@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margins and Spaces -->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="margin_horizontally_details_screen">40dp</dimen>
+    <dimen name="margin_between_components">20dp</dimen>
+    <dimen name="custom_progress_margin_bottom">16dp</dimen>
+
+    <!-- Images Sizes -->
+    <dimen name="stats_image_size">50dp</dimen>
+    <dimen name="pokemon_large_image_size">250dp</dimen>
+    <dimen name="pokemon_small_image_size">100dp</dimen>
+
+    <!-- Components -->
+    <dimen name="small_card_view_corner_radius">20dp</dimen>
+    <dimen name="small_card_view_elevation">2dp</dimen>
+    <dimen name="small_card_size">120dp</dimen>
+    <dimen name="small_card_elevation">1dp</dimen>
+
+    <!--    Toolbar-->
+    <dimen name="toolbar_height">100dp</dimen>
+    <dimen name="toolbar_padding_top">24dp</dimen>
+</resources>
