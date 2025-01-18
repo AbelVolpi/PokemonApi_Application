@@ -16,8 +16,8 @@ class DetailsViewModel @Inject constructor(
     private val getPokemonDetailsUseCase: GetPokemonDetailsUseCase
 ) : ViewModel() {
 
-    private val _pokemonDetailsState = MutableStateFlow<UiState<DetailedPokemon>?>(null)
-    val pokemonDetailsState: StateFlow<UiState<DetailedPokemon>?> = _pokemonDetailsState
+    private val _pokemonDetailsState = MutableStateFlow<UiState<DetailedPokemon>>(UiState.Loading)
+    val pokemonDetailsState: StateFlow<UiState<DetailedPokemon>> = _pokemonDetailsState
 
     fun fetchPokemonDetails(pokemonName: String) {
         viewModelScope.launch {
