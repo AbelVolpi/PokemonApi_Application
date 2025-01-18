@@ -84,7 +84,22 @@ Then, install it on a connected device:
 ```
 
 ## 🚂 CI/CD
-🚧 Work in progress
+
+In this project, a `CI/CD` workflow was configured using [GitHub Actions](https://docs.github.com/en/actions). It ensures that the code is analyzed, tested, and the application is automatically compiled when necessary.
+
+The configured workflow performs the following steps:
+
+1. **Check out code:** Clones the repository into the GitHub Actions virtual machine.
+2. **Java setup:** Sets up the required Java version (Java 17, Temurin distribution).
+3. **Grant permissions:** Grants execution permissions to use the `gradlew` script.
+4. **Static code analysis:** Runs `ktlintCheck` to ensure the code style.
+5. **Unit testing:** Executes the unit tests with `testDebugUnitTest`.
+6. **Build APK:** Generates the debug APK.
+7. **Upload APK:** Saves the generated APK as an artifact for direct download.
+
+ To run this workflow, just go to:
+
+> `Actions` -> `Android CI/CD` -> `Run Workflow`
 
 ## 🧪 Unit Tests & Code Coverage
 🚧 Work in progress
