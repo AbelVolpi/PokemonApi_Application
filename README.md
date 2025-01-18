@@ -45,7 +45,8 @@ Currently, the structure of the system is as follows:
 - [Retrofit](https://square.github.io/retrofit/), [Okhttp](https://square.github.io/okhttp/) & [Moshi](https://github.com/square/moshi) - Network calls
 - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Dependency injection
 - [Glide](https://github.com/bumptech/glide) - Load images in the app
-- [Mockk](https://mockk.io/ANDROID.html) - Unit tests
+- [JUnit](https://junit.org/junit4/) & [Mockk](https://mockk.io/ANDROID.html) - Unit tests
+- [JaCoCo](https://www.eclemma.org/jacoco/) - Code Coverage
 
 ## 📝 Commits pattern
 
@@ -102,4 +103,19 @@ The configured workflow performs the following steps:
 > `Actions` -> `Android CI/CD` -> `Run Workflow`
 
 ## 🧪 Unit Tests & Code Coverage
-🚧 Work in progress
+
+This project has unit tests to improve code quality and security, along with JaCoCo to monitor test coverage.
+
+To run unit tests:
+```
+./gradlew testDebugUnitTest
+```
+
+To generate the code coverage:
+```
+./gradlew jacocoTestReport
+```
+
+Once the coverage command is executed, the report will be available at:
+
+`build/reports/jacoco/jacocoTestReport/html/index.html`
