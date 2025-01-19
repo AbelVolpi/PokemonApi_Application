@@ -17,7 +17,7 @@ class PokemonTypeAdapter(
         fun bind(type: Type) {
             with(binding) {
                 typeTextView.text = type.type.typeName.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-                typeTextView.setBackgroundColor(type.parseTypeToColor(MainApplication.applicationContext()))
+                typeTextView.setBackgroundColor(type.parseTypeToColor(binding.root.context))
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.abelvolpi.pokemonapi.presentation.adapters
 
-import android.content.Context
 import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.abelvolpi.pokemonapi.utils.setImageUsingGlide
 
 class HomeAdapter(
     private val onPokemonClick: (GenericPokemon?, CustomImage?, ImageView) -> Unit,
-    private val context: Context
 ) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     private val pokemonList = arrayListOf<GenericPokemon>()
@@ -26,7 +24,7 @@ class HomeAdapter(
         fun bind(genericPokemon: GenericPokemon) {
             with(binding) {
                 pokemonNameTextView.text = genericPokemon.name
-                pokemonImage.setImageUsingGlide(context, genericPokemon.number)
+                pokemonImage.setImageUsingGlide(binding.root.context, genericPokemon.number)
                 pokemonImage.transitionName = genericPokemon.number
                 itemLayout.setOnClickListener {
                     onPokemonClick.invoke(
@@ -72,7 +70,9 @@ class SpacesItemDecoration(private val space: Int) : ItemDecoration() {
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
+        outRect.left = space
         outRect.right = space
+        outRect.top = space
         outRect.bottom = space
     }
 }
