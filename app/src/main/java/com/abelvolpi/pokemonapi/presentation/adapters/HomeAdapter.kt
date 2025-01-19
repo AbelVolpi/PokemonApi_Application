@@ -23,7 +23,7 @@ class HomeAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(genericPokemon: GenericPokemon) {
             with(binding) {
-                pokemonNameTextView.text = genericPokemon.name
+                pokemonNameTextView.text = genericPokemon.name.replaceFirstChar { it.titlecase() }
                 pokemonImage.setImageUsingGlide(binding.root.context, genericPokemon.number)
                 pokemonImage.transitionName = genericPokemon.number
                 itemLayout.setOnClickListener {
