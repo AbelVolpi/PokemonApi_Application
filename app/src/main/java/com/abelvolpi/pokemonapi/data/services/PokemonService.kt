@@ -1,6 +1,6 @@
 package com.abelvolpi.pokemonapi.data.services
 
-import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
+import com.abelvolpi.pokemonapi.data.models.DetailedPokemonResponse
 import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,5 +17,5 @@ interface PokemonService {
     @GET("pokemon/{pokemon_name}")
     suspend fun getPokemonInfo(
         @Path("pokemon_name") pokemonName: String
-    ): DetailedPokemon
+    ): DetailedPokemonResponse
 }

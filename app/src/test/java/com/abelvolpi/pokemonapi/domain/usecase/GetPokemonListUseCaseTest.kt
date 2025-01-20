@@ -1,7 +1,7 @@
 package com.abelvolpi.pokemonapi.domain.usecase
 
 import com.abelvolpi.pokemonapi.MainDispatcherRule
-import com.abelvolpi.pokemonapi.data.models.GenericPokemon
+import com.abelvolpi.pokemonapi.data.models.GenericPokemonResponse
 import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
 import com.abelvolpi.pokemonapi.data.repository.PokemonRepositoryImpl
 import com.abelvolpi.pokemonapi.data.services.PokemonService
@@ -38,8 +38,8 @@ class GetPokemonListUseCaseTest {
             val limit = 20
             val mockResponse = PokemonListResponse(
                 results = listOf(
-                    GenericPokemon(name = "pikachu", url = "https://pokeapi.co/api/v2/pokemon/25/"),
-                    GenericPokemon(name = "bulbasaur", url = "https://pokeapi.co/api/v2/pokemon/1/")
+                    GenericPokemonResponse(name = "pikachu", url = "https://pokeapi.co/api/v2/pokemon/25/"),
+                    GenericPokemonResponse(name = "bulbasaur", url = "https://pokeapi.co/api/v2/pokemon/1/")
                 ),
                 nextPageUrl = "next_url"
             )

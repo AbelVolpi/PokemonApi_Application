@@ -1,8 +1,9 @@
 package com.abelvolpi.pokemonapi.data.repository
 
-import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
-import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
+import com.abelvolpi.pokemonapi.data.mappers.toDomain
 import com.abelvolpi.pokemonapi.data.services.PokemonService
+import com.abelvolpi.pokemonapi.domain.models.DetailedPokemon
+import com.abelvolpi.pokemonapi.domain.models.PokemonList
 import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -12,15 +13,17 @@ class PokemonRepositoryImpl(
     private val pokemonService: PokemonService,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : PokemonRepository {
-    override suspend fun getPokemonList(offset: Int?, limit: Int?): PokemonListResponse {
+    override suspend fun getPokemonList(offset: Int?, limit: Int?): PokemonList {
         return withContext(dispatcher) {
-            pokemonService.getPokemonList(offset, limit)
+            val pokemonListResponse = pokemonService.getPokemonList(offset, limit)
+            pokemonListResponse.toDomain()
         }
     }
 
     override suspend fun getPokemonInfo(pokemonName: String): DetailedPokemon {
         return withContext(dispatcher) {
-            pokemonService.getPokemonInfo(pokemonName)
+            val detailedPokemonResponse = pokemonService.getPokemonInfo(pokemonName)
+            detailedPokemonResponse.toDomain()
         }
     }
 }

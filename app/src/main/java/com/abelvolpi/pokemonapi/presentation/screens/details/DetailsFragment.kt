@@ -10,18 +10,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.palette.graphics.Palette
 import com.abelvolpi.pokemonapi.R
-import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
-import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.databinding.FragmentDetailsBinding
 import com.abelvolpi.pokemonapi.presentation.UiState
 import com.abelvolpi.pokemonapi.presentation.adapters.PokemonTypeAdapter
 import com.abelvolpi.pokemonapi.presentation.models.CustomImage
+import com.abelvolpi.pokemonapi.presentation.models.DetailedPokemonUiModel
+import com.abelvolpi.pokemonapi.presentation.models.GenericPokemonUiModel
 import com.abelvolpi.pokemonapi.presentation.screens.BaseFragment
 import com.abelvolpi.pokemonapi.utils.getBundleParcelable
-import com.google.android.flexbox.*
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -52,7 +56,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
 
     private fun initViews() {
         with(binding) {
-            val argsGenericPokemon = arguments?.getBundleParcelable<GenericPokemon>("generic_pokemon")
+            val argsGenericPokemon = arguments?.getBundleParcelable<GenericPokemonUiModel>("generic_pokemon")
             val argsImage = arguments?.getBundleParcelable<CustomImage>("pokemon_image")
 
             argsGenericPokemon?.let { genericPokemon ->
@@ -88,7 +92,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                     is UiState.Loading -> showLoadingState()
                     is UiState.Success -> updateScreen(state.data)
                     is UiState.Failure -> showErrorFeedback()
-                    else -> {}
                 }
             }
         }
@@ -105,7 +108,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
         }
     }
 
-    private fun updateScreen(pokemon: DetailedPokemon) {
+    private fun updateScreen(pokemon: DetailedPokemonUiModel) {
         with(binding) {
             progressBar.visibility = View.GONE
             pokemonDetailsLayout.visibility = View.VISIBLE
@@ -124,10 +127,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                 layoutManager = myLayoutManager
                 adapter = PokemonTypeAdapter(pokemon.types)
             }
-            val hpValue = pokemon.stats.firstOrNull { it.stat.name == "hp" }?.baseStat ?: 0
-            val attackValue = pokemon.stats.firstOrNull { it.stat.name == "attack" }?.baseStat ?: 0
-            val defenseValue = pokemon.stats.firstOrNull { it.stat.name == "defense" }?.baseStat ?: 0
-            val speedValue = pokemon.stats.firstOrNull { it.stat.name == "speed" }?.baseStat ?: 0
+            val hpValue = pokemon.stats.firstOrNull { it.name == "hp" }?.value ?: 0
+            val attackValue = pokemon.stats.firstOrNull { it.name == "attack" }?.value ?: 0
+            val defenseValue = pokemon.stats.firstOrNull { it.name == "defense" }?.value ?: 0
+            val speedValue = pokemon.stats.firstOrNull { it.name == "speed" }?.value ?: 0
             hpProgressBar.setProgress(hpValue)
             attackProgressBar.setProgress(attackValue)
             defenseProgressBar.setProgress(defenseValue)

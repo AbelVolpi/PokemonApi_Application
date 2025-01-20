@@ -11,12 +11,12 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.databinding.FragmentHomeBinding
 import com.abelvolpi.pokemonapi.presentation.UiState
 import com.abelvolpi.pokemonapi.presentation.adapters.HomeAdapter
 import com.abelvolpi.pokemonapi.presentation.adapters.SpacesItemDecoration
 import com.abelvolpi.pokemonapi.presentation.models.CustomImage
+import com.abelvolpi.pokemonapi.presentation.models.GenericPokemonUiModel
 import com.abelvolpi.pokemonapi.presentation.screens.BaseFragment
 import com.abelvolpi.pokemonapi.utils.Constants.LIMIT_PER_REQUEST
 import dagger.hilt.android.AndroidEntryPoint
@@ -103,14 +103,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun handleSuccessState(pokemonList: List<GenericPokemon>) {
+    private fun handleSuccessState(pokemonList: List<GenericPokemonUiModel>) {
         if (verifyIsNewPokemonBatch(pokemonList)) {
             pokemonAdapter.addMorePokemon(pokemonList)
             homeViewModel.offSet += LIMIT_PER_REQUEST
         }
     }
 
-    private fun verifyIsNewPokemonBatch(results: List<GenericPokemon>): Boolean {
+    private fun verifyIsNewPokemonBatch(results: List<GenericPokemonUiModel>): Boolean {
         val firstPokemon = results.firstOrNull() ?: return false
         return homeViewModel.pokemonList.none { it.number == firstPokemon.number }
     }
@@ -120,17 +120,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun onPokemonClick(
-        genericPokemon: GenericPokemon?,
+        genericPokemonUiModel: GenericPokemonUiModel?,
         pokemonImageBitmap: CustomImage?,
         imageView: ImageView
     ) {
         val extras = FragmentNavigatorExtras(
-            imageView to genericPokemon?.number!!
+            imageView to (genericPokemonUiModel?.number ?: "")
         )
         navController.navigate(
             HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
                 pokemonImageBitmap,
-                genericPokemon
+                genericPokemonUiModel
             ),
             extras
         )

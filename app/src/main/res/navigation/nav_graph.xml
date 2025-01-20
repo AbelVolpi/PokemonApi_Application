@@ -26,7 +26,7 @@
             app:nullable="true" />
         <argument
             android:name="generic_pokemon"
-            app:argType="com.abelvolpi.pokemonapi.data.models.GenericPokemon"
+            app:argType="com.abelvolpi.pokemonapi.presentation.models.GenericPokemonUiModel"
             app:nullable="true" />
     </fragment>
 </navigation>

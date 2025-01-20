@@ -8,27 +8,27 @@ import android.widget.ImageView
 import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.abelvolpi.pokemonapi.data.models.GenericPokemon
 import com.abelvolpi.pokemonapi.databinding.HomeAdapterItemBinding
 import com.abelvolpi.pokemonapi.presentation.models.CustomImage
+import com.abelvolpi.pokemonapi.presentation.models.GenericPokemonUiModel
 import com.abelvolpi.pokemonapi.utils.setImageUsingGlide
 
 class HomeAdapter(
-    private val onPokemonClick: (GenericPokemon?, CustomImage?, ImageView) -> Unit,
+    private val onPokemonClick: (GenericPokemonUiModel?, CustomImage?, ImageView) -> Unit
 ) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
-    private val pokemonList = arrayListOf<GenericPokemon>()
+    private val pokemonList = arrayListOf<GenericPokemonUiModel>()
 
     inner class ViewHolder(private val binding: HomeAdapterItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(genericPokemon: GenericPokemon) {
+        fun bind(genericPokemonUiModel: GenericPokemonUiModel) {
             with(binding) {
-                pokemonNameTextView.text = genericPokemon.name.replaceFirstChar { it.titlecase() }
-                pokemonImage.setImageUsingGlide(binding.root.context, genericPokemon.number)
-                pokemonImage.transitionName = genericPokemon.number
+                pokemonNameTextView.text = genericPokemonUiModel.name.replaceFirstChar { it.titlecase() }
+                pokemonImage.setImageUsingGlide(binding.root.context, genericPokemonUiModel.number)
+                pokemonImage.transitionName = genericPokemonUiModel.number
                 itemLayout.setOnClickListener {
                     onPokemonClick.invoke(
-                        genericPokemon,
+                        genericPokemonUiModel,
                         binding.pokemonImage.drawable?.let { CustomImage(it.toBitmap()) },
                         pokemonImage
                     )
@@ -55,10 +55,10 @@ class HomeAdapter(
 
     override fun getItemCount() = pokemonList.size
 
-    fun addMorePokemon(newGenericPokemonList: List<GenericPokemon>) {
+    fun addMorePokemon(newGenericPokemonUiModelList: List<GenericPokemonUiModel>) {
         val startIndex = pokemonList.size
-        val lastIndex = newGenericPokemonList.size
-        pokemonList.addAll(newGenericPokemonList)
+        val lastIndex = newGenericPokemonUiModelList.size
+        pokemonList.addAll(newGenericPokemonUiModelList)
         notifyItemRangeInserted(startIndex, lastIndex)
     }
 }

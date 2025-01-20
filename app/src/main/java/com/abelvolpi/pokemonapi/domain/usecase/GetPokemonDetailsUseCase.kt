@@ -1,6 +1,6 @@
 package com.abelvolpi.pokemonapi.domain.usecase
 
-import com.abelvolpi.pokemonapi.data.models.DetailedPokemon
+import com.abelvolpi.pokemonapi.domain.models.DetailedPokemon
 import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
 import javax.inject.Inject
 
