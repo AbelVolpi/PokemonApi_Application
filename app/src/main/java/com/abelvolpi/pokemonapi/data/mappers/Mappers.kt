@@ -14,6 +14,8 @@ import com.abelvolpi.pokemonapi.domain.models.Stat
 import com.abelvolpi.pokemonapi.domain.models.StatItem
 import com.abelvolpi.pokemonapi.domain.models.SubType
 import com.abelvolpi.pokemonapi.domain.models.Type
+import com.abelvolpi.pokemonapi.utils.Constants.URLS.PNG
+import com.abelvolpi.pokemonapi.utils.Constants.URLS.POKEMON_IMAGE_URL
 
 fun PokemonListResponse.toDomain(): PokemonList {
     return PokemonList(
@@ -25,10 +27,13 @@ fun PokemonListResponse.toDomain(): PokemonList {
 fun GenericPokemonResponse.toDomain(): GenericPokemon {
     val parts = url.split("/")
     val number = parts[parts.size - 2]
+
+    val imageUrl = POKEMON_IMAGE_URL + number + PNG
     return GenericPokemon(
         name = name,
         url = url,
-        number = number
+        number = number,
+        imageUrl = imageUrl
     )
 }
 

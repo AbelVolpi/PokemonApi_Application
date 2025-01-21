@@ -75,12 +75,14 @@ class HomeViewModelTest {
             GenericPokemon(
                 name = "pikachu",
                 url = "https://pokeapi.co/api/v2/pokemon/25/",
-                number = "25"
+                number = "25",
+                imageUrl = "image_url"
             ),
             GenericPokemon(
                 name = "bulbasaur",
                 url = "https://pokeapi.co/api/v2/pokemon/1/",
-                number = "1"
+                number = "1",
+                imageUrl = "image_url"
             )
         ),
         nextPageUrl = "next_url"
@@ -90,12 +92,14 @@ class HomeViewModelTest {
         results = listOf(
             GenericPokemonUiModel(
                 name = "pikachu",
-                number = "25"
+                number = "25",
+                imageUrl = "image_url"
             ),
             GenericPokemonUiModel(
                 name = "bulbasaur",
-                number = "1"
+                number = "1",
+                imageUrl = "image_url"
             )
-        ),
+        )
     )
 }

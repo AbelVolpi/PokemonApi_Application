@@ -35,6 +35,7 @@ fun StatItem.toUiModel(): StatUiModel {
 fun GenericPokemon.toUiModel(): GenericPokemonUiModel {
     return GenericPokemonUiModel(
         name = name,
-        number = number
+        number = number,
+        imageUrl = imageUrl
     )
 }

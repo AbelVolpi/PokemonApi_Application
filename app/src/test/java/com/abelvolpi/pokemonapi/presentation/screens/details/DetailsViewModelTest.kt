@@ -82,7 +82,6 @@ class DetailsViewModelTest {
         )
     )
 
-
     private fun createExpectedDetailedPokemonUiModel(name: String) = DetailedPokemonUiModel(
         name = name,
         types = listOf("electric"),
@@ -93,5 +92,4 @@ class DetailsViewModelTest {
             StatUiModel(value = 55, name = "attack")
         )
     )
-
 }

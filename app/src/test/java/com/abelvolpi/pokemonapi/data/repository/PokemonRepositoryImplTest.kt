@@ -17,6 +17,8 @@ import com.abelvolpi.pokemonapi.domain.models.StatItem
 import com.abelvolpi.pokemonapi.domain.models.SubType
 import com.abelvolpi.pokemonapi.domain.models.Type
 import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
+import com.abelvolpi.pokemonapi.utils.Constants.URLS.PNG
+import com.abelvolpi.pokemonapi.utils.Constants.URLS.POKEMON_IMAGE_URL
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -127,23 +129,23 @@ class PokemonRepositoryImplTest {
         nextPageUrl = "next_url"
     )
 
-
     private fun createExpectedPokemonList() = PokemonList(
         listOf(
             GenericPokemon(
                 name = "pikachu",
                 url = "https://pokeapi.co/api/v2/pokemon/25/",
-                number = "25"
+                number = "25",
+                imageUrl = POKEMON_IMAGE_URL + "25" + PNG
             ),
             GenericPokemon(
                 name = "bulbasaur",
                 url = "https://pokeapi.co/api/v2/pokemon/1/",
-                number = "1"
+                number = "1",
+                imageUrl = POKEMON_IMAGE_URL + "1" + PNG
             )
         ),
         nextPageUrl = "next_url"
     )
-
 
     private fun createMockDetailedPokemonResponse(pokemonName: String) = DetailedPokemonResponse(
         name = pokemonName,
@@ -155,7 +157,6 @@ class PokemonRepositoryImplTest {
             StatItemResponse(baseStat = 55, statResponse = StatResponse(name = "attack"))
         )
     )
-
 
     private fun createExpectedDetailedPokemon(pokemonName: String) = DetailedPokemon(
         name = pokemonName,

@@ -24,7 +24,7 @@ class HomeAdapter(
         fun bind(genericPokemonUiModel: GenericPokemonUiModel) {
             with(binding) {
                 pokemonNameTextView.text = genericPokemonUiModel.name.replaceFirstChar { it.titlecase() }
-                pokemonImage.setImageUsingGlide(binding.root.context, genericPokemonUiModel.number)
+                pokemonImage.setImageUsingGlide(binding.root.context, genericPokemonUiModel.imageUrl)
                 pokemonImage.transitionName = genericPokemonUiModel.number
                 itemLayout.setOnClickListener {
                     onPokemonClick.invoke(
