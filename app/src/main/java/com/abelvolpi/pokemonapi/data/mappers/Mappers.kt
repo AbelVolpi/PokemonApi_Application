@@ -18,12 +18,13 @@ import com.abelvolpi.pokemonapi.domain.models.Type
 fun PokemonListResponse.toDomain(): PokemonList {
     return PokemonList(
         results = results.map { it.toDomain() },
-        nextPageUrl = nextPageUrl
+        nextPageUrl = nextPageUrl ?: ""
     )
 }
 
 fun GenericPokemonResponse.toDomain(): GenericPokemon {
-    val number = url.split("/")[url.split("/").size - 2]
+    val parts = url.split("/")
+    val number = parts[parts.size - 2]
     return GenericPokemon(
         name = name,
         url = url,

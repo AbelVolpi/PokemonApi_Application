@@ -2,12 +2,17 @@ package com.abelvolpi.pokemonapi.domain.usecase
 
 import com.abelvolpi.pokemonapi.MainDispatcherRule
 import com.abelvolpi.pokemonapi.data.models.DetailedPokemonResponse
-import com.abelvolpi.pokemonapi.data.models.StatResponse
 import com.abelvolpi.pokemonapi.data.models.StatItemResponse
+import com.abelvolpi.pokemonapi.data.models.StatResponse
 import com.abelvolpi.pokemonapi.data.models.SubTypeResponse
 import com.abelvolpi.pokemonapi.data.models.TypeResponse
 import com.abelvolpi.pokemonapi.data.repository.PokemonRepositoryImpl
 import com.abelvolpi.pokemonapi.data.services.PokemonService
+import com.abelvolpi.pokemonapi.domain.models.DetailedPokemon
+import com.abelvolpi.pokemonapi.domain.models.Stat
+import com.abelvolpi.pokemonapi.domain.models.StatItem
+import com.abelvolpi.pokemonapi.domain.models.SubType
+import com.abelvolpi.pokemonapi.domain.models.Type
 import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -19,8 +24,8 @@ import org.junit.Test
 
 class GetPokemonDetailsUseCaseTest {
 
-    private lateinit var repository: PokemonRepository
-    private lateinit var useCase: GetPokemonDetailsUseCase
+    private lateinit var pokemonRepository: PokemonRepository
+    private lateinit var getPokemonDetailsUseCase: GetPokemonDetailsUseCase
     private lateinit var pokemonService: PokemonService
 
     @get:Rule
@@ -29,8 +34,8 @@ class GetPokemonDetailsUseCaseTest {
     @Before
     fun setup() {
         pokemonService = mockk()
-        repository = PokemonRepositoryImpl(pokemonService, mainDispatcherRule.testDispatcher)
-        useCase = GetPokemonDetailsUseCase(repository)
+        pokemonRepository = PokemonRepositoryImpl(pokemonService, mainDispatcherRule.testDispatcher)
+        getPokemonDetailsUseCase = GetPokemonDetailsUseCase(pokemonRepository)
     }
 
     @Test
@@ -38,24 +43,16 @@ class GetPokemonDetailsUseCaseTest {
         runTest {
             // Given
             val pokemonName = "pikachu"
-            val mockResponse = DetailedPokemonResponse(
-                name = "pikachu",
-                typeResponses = listOf(TypeResponse(SubTypeResponse(typeName = "electric"))),
-                weight = 6.0f,
-                height = 0.4f,
-                stats = listOf(
-                    StatItemResponse(baseStat = 35, statResponse = StatResponse(name = "hp")),
-                    StatItemResponse(baseStat = 55, statResponse = StatResponse(name = "attack"))
-                )
-            )
+            val mockResponse = createMockDetailedPokemonResponse(pokemonName)
+            val expectedDetailedPokemon = createDetailedPokemonDomainResponse(pokemonName)
             coEvery { pokemonService.getPokemonInfo(pokemonName) } returns mockResponse
 
             // When
-            val response = useCase(pokemonName)
+            val result = getPokemonDetailsUseCase(pokemonName)
 
             // Then
             coVerify(exactly = 1) { pokemonService.getPokemonInfo(pokemonName) }
-            assert(response == mockResponse)
+            assert(result == expectedDetailedPokemon)
         }
 
     @Test
@@ -67,13 +64,35 @@ class GetPokemonDetailsUseCaseTest {
             coEvery { pokemonService.getPokemonInfo(pokemonName) } throws exception
 
             // When
-            val response = try {
-                useCase(pokemonName)
+            val result = try {
+                getPokemonDetailsUseCase(pokemonName)
             } catch (error: Throwable) {
                 error
             }
 
             // Then
-            assert(response == exception)
+            assert(result == exception)
         }
+
+    private fun createMockDetailedPokemonResponse(pokemonName: String) = DetailedPokemonResponse(
+        name = pokemonName,
+        typeResponses = listOf(TypeResponse(SubTypeResponse(typeName = "electric"))),
+        weight = 6.0f,
+        height = 0.4f,
+        stats = listOf(
+            StatItemResponse(baseStat = 35, statResponse = StatResponse(name = "hp")),
+            StatItemResponse(baseStat = 55, statResponse = StatResponse(name = "attack"))
+        )
+    )
+
+    private fun createDetailedPokemonDomainResponse(pokemonName: String) = DetailedPokemon(
+        name = pokemonName,
+        types = listOf(Type(SubType(typeName = "electric"))),
+        weight = 6.0f,
+        height = 0.4f,
+        stats = listOf(
+            StatItem(baseStat = 35, stat = Stat(name = "hp")),
+            StatItem(baseStat = 55, stat = Stat(name = "attack"))
+        )
+    )
 }

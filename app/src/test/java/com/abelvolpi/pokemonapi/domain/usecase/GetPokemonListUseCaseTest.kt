@@ -1,10 +1,8 @@
 package com.abelvolpi.pokemonapi.domain.usecase
 
 import com.abelvolpi.pokemonapi.MainDispatcherRule
-import com.abelvolpi.pokemonapi.data.models.GenericPokemonResponse
-import com.abelvolpi.pokemonapi.data.models.PokemonListResponse
-import com.abelvolpi.pokemonapi.data.repository.PokemonRepositoryImpl
-import com.abelvolpi.pokemonapi.data.services.PokemonService
+import com.abelvolpi.pokemonapi.domain.models.GenericPokemon
+import com.abelvolpi.pokemonapi.domain.models.PokemonList
 import com.abelvolpi.pokemonapi.domain.repository.PokemonRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -16,18 +14,16 @@ import org.junit.Test
 
 class GetPokemonListUseCaseTest {
 
-    private lateinit var repository: PokemonRepository
-    private lateinit var useCase: GetPokemonListUseCase
-    private lateinit var pokemonService: PokemonService
+    private lateinit var pokemonRepository: PokemonRepository
+    private lateinit var getPokemonListUseCase: GetPokemonListUseCase
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
     @Before
     fun setup() {
-        pokemonService = mockk()
-        repository = PokemonRepositoryImpl(pokemonService, mainDispatcherRule.testDispatcher)
-        useCase = GetPokemonListUseCase(repository)
+        pokemonRepository = mockk()
+        getPokemonListUseCase = GetPokemonListUseCase(pokemonRepository)
     }
 
     @Test
@@ -36,21 +32,15 @@ class GetPokemonListUseCaseTest {
             // Given
             val offset = 0
             val limit = 20
-            val mockResponse = PokemonListResponse(
-                results = listOf(
-                    GenericPokemonResponse(name = "pikachu", url = "https://pokeapi.co/api/v2/pokemon/25/"),
-                    GenericPokemonResponse(name = "bulbasaur", url = "https://pokeapi.co/api/v2/pokemon/1/")
-                ),
-                nextPageUrl = "next_url"
-            )
-            coEvery { repository.getPokemonList(offset, limit) } returns mockResponse
+            val expectedPokemonList = createExpectedPokemonList()
+            coEvery { pokemonRepository.getPokemonList(offset, limit) } returns expectedPokemonList
 
             // When
-            val response = useCase(offset, limit)
+            val result = getPokemonListUseCase(offset, limit)
 
             // Then
-            coVerify(exactly = 1) { repository.getPokemonList(offset, limit) }
-            assert(response == mockResponse)
+            coVerify(exactly = 1) { pokemonRepository.getPokemonList(offset, limit) }
+            assert(result == expectedPokemonList)
         }
 
     @Test
@@ -60,11 +50,11 @@ class GetPokemonListUseCaseTest {
             val offset = 0
             val limit = 20
             val exception = Throwable("Network error")
-            coEvery { repository.getPokemonList(offset, limit) } throws exception
+            coEvery { pokemonRepository.getPokemonList(offset, limit) } throws exception
 
             // When
             val response = try {
-                useCase(offset, limit)
+                getPokemonListUseCase(offset, limit)
             } catch (error: Throwable) {
                 error
             }
@@ -72,4 +62,20 @@ class GetPokemonListUseCaseTest {
             // Then
             assert(response == exception)
         }
+
+    private fun createExpectedPokemonList() = PokemonList(
+        listOf(
+            GenericPokemon(
+                name = "pikachu",
+                url = "https://pokeapi.co/api/v2/pokemon/25/",
+                number = "25"
+            ),
+            GenericPokemon(
+                name = "bulbasaur",
+                url = "https://pokeapi.co/api/v2/pokemon/1/",
+                number = "1"
+            )
+        ),
+        nextPageUrl = "next_url"
+    )
 }
