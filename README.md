@@ -111,7 +111,7 @@ To run unit tests:
 ./gradlew testDebugUnitTest
 ```
 
-To generate the code coverage:
+To generate the code coverage of the entire project:
 ```
 ./gradlew jacocoTestReport
 ```

@@ -1,0 +1,41 @@
+project.afterEvaluate {
+    tasks.register("jacocoTestReport", JacocoReport) {
+        dependsOn subprojects.collect {
+            it.tasks.matching { task ->
+                task.name == "moduleJacocoTestReport"
+            }
+        }
+
+        reports {
+            html.required = true
+        }
+
+        def fileFilter = [
+            '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*',
+            'android/**/*.*', 'androidx/**/*.*', '**/*$ViewInjector*.*', '**/*Dagger*.*',
+            '**/*MembersInjector*.*', '**/*_Factory.*', '**/*_Provide*Factory*.*', '**/*_ViewBinding*.*',
+            '**/AutoValue_*.*', '**/R2.class', '**/R2$*.class', '**/*Directions$*', '**/*Directions.*',
+            '**/*Binding.*'
+        ]
+
+        def kotlinClasses = subprojects.collect { proj ->
+            fileTree(dir: "${proj.buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+        }
+
+        def mainSources = subprojects.collect { proj ->
+            "${proj.projectDir}/src/main/java"
+        }
+
+        def coveragePath = "/outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec"
+        def executionFiles = subprojects.findAll { proj ->
+            def path = "${proj.buildDir}${coveragePath}"
+            (new File(path)).exists()
+        }.collect { proj ->
+            "${proj.buildDir}${coveragePath}"
+        }
+
+        sourceDirectories.setFrom(files(mainSources))
+        classDirectories.setFrom(files(kotlinClasses))
+        executionData.setFrom(files(executionFiles))
+    }
+}

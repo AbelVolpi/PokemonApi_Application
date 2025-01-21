@@ -1,27 +1,23 @@
 plugins {
-    alias libs.plugins.android.application
+    alias libs.plugins.android.library
     alias libs.plugins.kotlin.android
+    alias libs.plugins.navigation.safeargs
     alias libs.plugins.hilt.android
     alias libs.plugins.kotlin.kapt
+    alias libs.plugins.kotlin.parcelize
 }
 
 apply from: '../tasks/jacoco-modules.gradle'
 
 android {
+    namespace 'com.abelvolpi.pokemonapi.presentation'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.abelvolpi.pokemonapi"
-        namespace 'com.abelvolpi.pokemonapi'
         minSdk 21
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
 
-    buildFeatures {
-        buildConfig = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -33,6 +29,11 @@ android {
             testCoverageEnabled true
         }
     }
+
+    viewBinding {
+        enabled = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -44,22 +45,33 @@ android {
 
 dependencies {
 
-    implementation libs.androidx.core
+    implementation libs.androidx.core.ktx.v170
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout
     implementation libs.legacy.support
 
     // Project Modules
-    implementation project(":presentation")
     implementation project(":domain")
-    implementation project(":data")
+
+    // Tests Module
+    testImplementation project(":common-test")
+
+    // Navigation Component
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
+
+    //Palette
+    implementation libs.palette
+
+    //FlexBoxLayout
+    implementation libs.flexbox
 
     //Hilt - Dependency Injection
     implementation libs.hilt
     kapt libs.hilt.compiler
-}
 
-kapt {
-    correctErrorTypes = true
+    //Glide
+    implementation libs.glide
+    kapt libs.glide.compiler
 }

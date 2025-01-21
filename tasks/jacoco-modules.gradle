@@ -1,0 +1,23 @@
+tasks.register("moduleJacocoTestReport", JacocoReport) {
+    dependsOn "testDebugUnitTest"
+
+    reports {
+        html.required = true
+    }
+
+    def fileFilter = [
+        '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*',
+        'android/**/*.*', 'androidx/**/*.*', '**/*$ViewInjector*.*', '**/*Dagger*.*',
+        '**/*MembersInjector*.*', '**/*_Factory.*', '**/*_Provide*Factory*.*', '**/*_ViewBinding*.*',
+        '**/AutoValue_*.*', '**/R2.class', '**/R2$*.class', '**/*Directions$*', '**/*Directions.*',
+        '**/*Binding.*'
+    ]
+
+    def kotlinClasses = fileTree(dir: "$buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "$projectDir/src/main/java"
+    def executionFile = "${buildDir}/outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec"
+
+    sourceDirectories.setFrom(files(mainSrc))
+    classDirectories.setFrom(files(kotlinClasses))
+    executionData.setFrom(files(executionFile))
+}

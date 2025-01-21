@@ -1,5 +1,5 @@
 plugins {
-    alias libs.plugins.android.application
+    alias libs.plugins.android.library
     alias libs.plugins.kotlin.android
     alias libs.plugins.hilt.android
     alias libs.plugins.kotlin.kapt
@@ -8,16 +8,15 @@ plugins {
 apply from: '../tasks/jacoco-modules.gradle'
 
 android {
+    namespace 'com.abelvolpi.pokemonapi.data'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.abelvolpi.pokemonapi"
-        namespace 'com.abelvolpi.pokemonapi'
         minSdk 21
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        buildConfigField("String", "BASE_URL", "$BASE_URL")
     }
 
     buildFeatures {
@@ -27,7 +26,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             testCoverageEnabled true
@@ -44,22 +42,25 @@ android {
 
 dependencies {
 
-    implementation libs.androidx.core
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.constraintlayout
+    // Project Modules
+    implementation project(':domain')
+
+    // Tests Module
+    testImplementation project(":common-test")
+
+    implementation libs.androidx.core.ktx.v170
     implementation libs.legacy.support
 
-    // Project Modules
-    implementation project(":presentation")
-    implementation project(":domain")
-    implementation project(":data")
+    //Retrofit
+    implementation libs.retrofit
+    implementation libs.retrofit.converter.moshi
+    implementation libs.okhttp.logging
+
+    //Moshi
+    implementation(libs.moshi.kotlin)
 
     //Hilt - Dependency Injection
     implementation libs.hilt
     kapt libs.hilt.compiler
-}
-
-kapt {
-    correctErrorTypes = true
+    
 }

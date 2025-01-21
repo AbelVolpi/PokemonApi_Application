@@ -1,0 +1,49 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.hilt.android
+    alias libs.plugins.kotlin.kapt
+}
+
+apply from: '../tasks/jacoco-modules.gradle'
+
+android {
+    namespace 'com.abelvolpi.pokemonapi.domain'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+        debug {
+            testCoverageEnabled true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx.v170
+    implementation libs.legacy.support
+
+    // Tests Module
+    testImplementation project(":common-test")
+
+    //Hilt - Dependency Injection
+    implementation libs.hilt
+    kapt libs.hilt.compiler
+}

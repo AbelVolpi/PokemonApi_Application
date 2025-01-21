@@ -1,0 +1,43 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+}
+
+apply from: '../tasks/jacoco-modules.gradle'
+
+android {
+    namespace 'com.abelvolpi.pokemonapi.common_test'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    api libs.androidx.core
+    api libs.appcompat
+
+    //Tests
+    api libs.junit
+    androidTestApi libs.androidx.junit
+    androidTestApi libs.androidx.espresso.core
+    api libs.mockk
+    api libs.kotlinx.coroutines.test
+}
