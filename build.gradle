@@ -3,7 +3,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath "org.jacoco:org.jacoco.core:0.8.8"
+        classpath libs.org.jacoco.core
     }
 }
 
