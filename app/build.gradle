@@ -17,7 +17,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.abelvolpi.pokemonapi.CustomTestRunner"
     }
 
     buildFeatures {
@@ -31,6 +31,7 @@ android {
         }
         debug {
             testCoverageEnabled true
+            resValue("string", "clear_text_config","true")
         }
     }
     compileOptions {
@@ -39,6 +40,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+        }
     }
 }
 
@@ -58,6 +66,27 @@ dependencies {
     //Hilt - Dependency Injection
     implementation libs.hilt
     kapt libs.hilt.compiler
+
+    // Unit Tests
+    testImplementation project(":common-test")
+
+    // UI Tests
+    androidTestImplementation project(":common-test")
+    androidTestImplementation libs.hilt.android.testing
+    kaptAndroidTest libs.hilt.compiler
+    debugImplementation libs.androidx.fragment.testing.manifest
+    androidTestImplementation libs.androidx.fragment.testing
+
+    androidTestImplementation libs.androidx.rules
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation libs.androidx.espresso.contrib
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
+
+
+    androidTestImplementation libs.androidx.rules
+    androidTestImplementation libs.androidx.junit
+
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
 }
 
 kapt {

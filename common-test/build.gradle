@@ -28,6 +28,13 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
@@ -38,6 +45,9 @@ dependencies {
     api libs.junit
     androidTestApi libs.androidx.junit
     androidTestApi libs.androidx.espresso.core
+    androidTestApi libs.androidx.espresso.contrib
+    androidTestApi libs.androidx.rules
+
     api libs.mockk
     api libs.kotlinx.coroutines.test
 }

@@ -16,7 +16,8 @@ android {
     defaultConfig {
         minSdk 21
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.abelvolpi.pokemonapi.presentation.CustomTestRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -41,10 +42,17 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
-
+    // Android Core
     implementation libs.androidx.core.ktx.v170
     implementation libs.appcompat
     implementation libs.material
@@ -53,9 +61,6 @@ dependencies {
 
     // Project Modules
     implementation project(":domain")
-
-    // Tests Module
-    testImplementation project(":common-test")
 
     // Navigation Component
     implementation libs.navigation.fragment
@@ -74,4 +79,21 @@ dependencies {
     //Glide
     implementation libs.glide
     kapt libs.glide.compiler
+
+    // Tests Module
+    testImplementation project(":common-test")
+    androidTestImplementation project(":common-test")
+
+    // UI Tests
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.6.1"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.6.1"
+//    androidTestImplementation "androidx.test.espresso.idling:idling-resource:3.5.1"
+
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation "androidx.test:rules:1.5.0"
+
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.51.1'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.51.1'
+
+
 }

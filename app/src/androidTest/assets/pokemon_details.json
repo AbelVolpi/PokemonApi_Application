@@ -1,0 +1,43 @@
+{
+    "name": "charizard",
+    "types": [
+        {
+            "type": {
+                "name": "fire"
+            }
+        },
+        {
+            "type": {
+                "name": "flying"
+            }
+        }
+    ],
+    "weight": 90.5,
+    "height": 1.7,
+    "stats": [
+        {
+            "base_stat": 78,
+            "stat": {
+                "name": "hp"
+            }
+        },
+        {
+            "base_stat": 84,
+            "stat": {
+                "name": "attack"
+            }
+        },
+        {
+            "base_stat": 78,
+            "stat": {
+                "name": "defense"
+            }
+        },
+        {
+            "base_stat": 100,
+            "stat": {
+                "name": "speed"
+            }
+        }
+    ]
+}
