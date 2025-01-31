@@ -4,7 +4,18 @@ This project is a native Android app developed to simulate a Pokedex, consuming
 the [PokeApi](https://pokeapi.co/). It's an application developed following the best practices in
 Android Development.
 
-## UI & Features
+## 📌 Table of Contents
+- [📱 UI & Features](#-ui--features)
+- [🛠 Architecture](#-architecture)
+- [📚 Libraries & Tools](#-libraries--tools)
+- [📝 Commits pattern](#-commits-pattern)
+- [🔍 Static Code Analysis](#-static-code-analysis)
+- [🏗️ How Build/Run the project?](#%EF%B8%8F-how-buildrun-the-project)
+- [🚂 CI/CD](#-cicd)
+- [🧪 Unit Tests & Code Coverage](#-unit-tests--code-coverage)
+- [⚙️ UI Tests](#%EF%B8%8F-uiinstrumented-tests)
+
+## 📱 UI & Features
 
 <table border="1" style="border-collapse: collapse">
   <tr>
@@ -54,6 +65,8 @@ The structure is as follows:
 - [Glide](https://github.com/bumptech/glide) - Load images in the app
 - [JUnit](https://junit.org/junit4/) & [Mockk](https://mockk.io/ANDROID.html) - Unit tests
 - [JaCoCo](https://www.eclemma.org/jacoco/) - Code Coverage
+- [Espresso](https://developer.android.com/training/testing/espresso) & [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) - UI/Instrumented Tests
+
 
 ## 📝 Commits pattern
 
@@ -127,7 +140,7 @@ Once the coverage command is executed, the report will be available at:
 
 `build/reports/jacoco/jacocoTestReport/html/index.html`
 
-## ⚙️ UI Tests
+## ⚙️ UI/Instrumented Tests
 
 Also, this project has instrumented and UI tests using `Espresso` and `MockWebServer`.
 
