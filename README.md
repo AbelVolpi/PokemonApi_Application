@@ -35,7 +35,14 @@ architecture pattern and following
 the [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 concepts.
 
-Currently, the structure of the system is as follows:
+Currently, the system has a modularization by layer with:
+- `app` - application class
+- `presentation` - views, viewModels and UI models
+- `domain` - use cases, repositories contracts and domain models
+- `data` - repositories implementations, and network classes
+- `common-test` - test classes reused in all modules
+
+The structure is as follows:
 
 <img src="images/architecture.png" width="600" style="border-radius: 15px;">
 
@@ -119,3 +126,12 @@ To generate the code coverage of the entire project:
 Once the coverage command is executed, the report will be available at:
 
 `build/reports/jacoco/jacocoTestReport/html/index.html`
+
+## ⚙️ UI Tests
+
+Also, this project has instrumented and UI tests using `Espresso` and `MockWebServer`.
+
+To run:
+```
+./gradlew app:connectedAndroidTest
+```
