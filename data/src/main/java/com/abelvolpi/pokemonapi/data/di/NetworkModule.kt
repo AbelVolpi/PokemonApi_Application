@@ -40,11 +40,18 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit {
+    fun provideRetrofit(baseUrl: String, client: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object UrlModule {
+    @Provides
+    fun provideUrl(): String = BuildConfig.BASE_URL
 }

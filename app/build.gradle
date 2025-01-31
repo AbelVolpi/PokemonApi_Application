@@ -17,7 +17,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.abelvolpi.pokemonapi.CustomTestRunner"
     }
 
     buildFeatures {
@@ -40,10 +40,17 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE.md"
+            merges += "META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
-
+    // Android Core
     implementation libs.androidx.core
     implementation libs.appcompat
     implementation libs.material
@@ -58,6 +65,26 @@ dependencies {
     //Hilt - Dependency Injection
     implementation libs.hilt
     kapt libs.hilt.compiler
+
+    // UI Tests
+    androidTestImplementation project(":common-test")
+
+    //Hilt - UI Tests
+    androidTestImplementation libs.hilt.android.testing
+    kaptAndroidTest libs.hilt.compiler
+
+    // Fragment Testing - UI tests
+    debugImplementation libs.androidx.fragment.testing.manifest
+    androidTestImplementation libs.androidx.fragment.testing
+
+    // Espresso - UI tests
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation libs.androidx.espresso.contrib
+    androidTestImplementation libs.androidx.espresso.idling.resource
+
+    // Mock Calls - UI tests
+    androidTestImplementation libs.mockwebserver
+    androidTestImplementation libs.androidx.junit
 }
 
 kapt {

@@ -37,13 +37,17 @@ android {
 
 dependencies {
 
-    implementation libs.androidx.core.ktx.v170
+    // Android Core
+    implementation libs.androidx.core
     implementation libs.legacy.support
-
-    // Tests Module
-    testImplementation project(":common-test")
 
     //Hilt - Dependency Injection
     implementation libs.hilt
     kapt libs.hilt.compiler
+
+    // Unit Tests
+    testImplementation project(":common-test")
+    testImplementation libs.junit
+    testImplementation libs.mockk
+    testImplementation libs.kotlinx.coroutines.test
 }

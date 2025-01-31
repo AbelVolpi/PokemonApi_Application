@@ -41,15 +41,12 @@ android {
 }
 
 dependencies {
+    // Android Core
+    implementation libs.androidx.core
+    implementation libs.legacy.support
 
     // Project Modules
     implementation project(':domain')
-
-    // Tests Module
-    testImplementation project(":common-test")
-
-    implementation libs.androidx.core.ktx.v170
-    implementation libs.legacy.support
 
     //Retrofit
     implementation libs.retrofit
@@ -62,5 +59,10 @@ dependencies {
     //Hilt - Dependency Injection
     implementation libs.hilt
     kapt libs.hilt.compiler
-    
+
+    // Unit Tests
+    testImplementation project(":common-test")
+    testImplementation libs.junit
+    testImplementation libs.mockk
+    testImplementation libs.kotlinx.coroutines.test
 }
