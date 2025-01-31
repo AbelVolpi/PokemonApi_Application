@@ -17,7 +17,6 @@ android {
         minSdk 21
 
         testInstrumentationRunner "com.abelvolpi.pokemonapi.presentation.CustomTestRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
