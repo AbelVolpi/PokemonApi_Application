@@ -1,6 +1,7 @@
 package com.abelvolpi.pokemonapi.presentation.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,17 @@ abstract class BaseFragment<T : ViewBinding>(
 ) : Fragment() {
 
     private var _binding: T? = null
-    val binding: T get() = _binding!!
+    val binding: T?
+        get() {
+            if (_binding == null) {
+                Log.e("BaseFragment", "ViewBinding can only be accessed between onCreateView and onDestroyView")
+            }
+            return _binding
+        }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = inflateMethod.invoke(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onDestroyView() {

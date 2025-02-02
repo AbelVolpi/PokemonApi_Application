@@ -55,7 +55,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
     }
 
     private fun initViews() {
-        with(binding) {
+        binding?.run {
             val argsGenericPokemon = arguments?.getBundleParcelable<GenericPokemonUiModel>("generic_pokemon")
             val argsImage = arguments?.getBundleParcelable<CustomImage>("pokemon_image")
 
@@ -102,14 +102,14 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
     }
 
     private fun showLoadingState() {
-        with(binding) {
+        binding?.run {
             pokemonDetailsLayout.visibility = View.GONE
             progressBar.visibility = View.VISIBLE
         }
     }
 
     private fun updateScreen(pokemon: DetailedPokemonUiModel) {
-        with(binding) {
+        binding?.run {
             progressBar.visibility = View.GONE
             pokemonDetailsLayout.visibility = View.VISIBLE
 
@@ -139,7 +139,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
     }
 
     private fun showErrorFeedback() {
-        with(binding) {
+        binding?.run {
             progressBar.visibility = View.GONE
             pokemonDetailsLayout.visibility = View.GONE
 

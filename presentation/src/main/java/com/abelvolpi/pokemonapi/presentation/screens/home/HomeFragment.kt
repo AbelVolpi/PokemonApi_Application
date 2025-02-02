@@ -55,7 +55,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun initLayout() {
-        with(binding) {
+        binding?.run {
             val spacingInPixels = 10
             gridRecyclerView.addItemDecoration(SpacesItemDecoration(spacingInPixels))
 
