@@ -148,3 +148,9 @@ To run:
 ```
 ./gradlew app:connectedAndroidTest
 ```
+
+## 🚧 Next steps & work in progress:
+
+- Integrate UI tests in code coverage
+- Integrate UI tests in CI
+- Migrate to modularization by feature
