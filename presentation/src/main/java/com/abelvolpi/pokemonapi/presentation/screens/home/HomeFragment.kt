@@ -1,7 +1,6 @@
 package com.abelvolpi.pokemonapi.presentation.screens.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.view.doOnPreDraw
@@ -93,7 +92,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     is UiState.Loading -> {}
                     is UiState.Finished -> {}
                     is UiState.Success -> { populateUI(state.data.results) }
-                    is UiState.Failure -> { Log.e("HOME_ERROR", state.exception.toString()) }
+                    is UiState.Failure -> { showErrorMessage() }
                 }
             }
         }
@@ -101,6 +100,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun populateUI(pokemonList: List<GenericPokemonUiModel>) {
         pokemonAdapter.addMorePokemon(pokemonList)
+    }
+
+    private fun showErrorMessage(){
+        binding?.run {
+            errorMessageTextView.visibility = View.VISIBLE
+        }
     }
 
 
