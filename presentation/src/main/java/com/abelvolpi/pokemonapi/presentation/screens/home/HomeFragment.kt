@@ -92,28 +92,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             homeViewModel.newPokemonsListState.collect { state ->
                 when (state) {
                     is UiState.Loading -> {}
-                    is UiState.Success -> {
-                        handleSuccessState(state.data.results)
-                    }
-                    is UiState.Failure -> {
-                        Log.e("HOME_ERROR", state.exception.toString())
-                    }
+                    is UiState.Finished -> {}
+                    is UiState.Success -> { handleSuccessState(state.data.results) }
+                    is UiState.Failure -> { Log.e("HOME_ERROR", state.exception.toString()) }
                 }
             }
         }
     }
 
     private fun handleSuccessState(pokemonList: List<GenericPokemonUiModel>) {
-        if (verifyIsNewPokemonBatch(pokemonList)) {
-            pokemonAdapter.addMorePokemon(pokemonList)
-            homeViewModel.offSet += LIMIT_PER_REQUEST
-        }
+        pokemonAdapter.addMorePokemon(pokemonList)
+        homeViewModel.offSet += LIMIT_PER_REQUEST
     }
 
-    private fun verifyIsNewPokemonBatch(results: List<GenericPokemonUiModel>): Boolean {
-        val firstPokemon = results.firstOrNull() ?: return false
-        return homeViewModel.pokemonList.none { it.number == firstPokemon.number }
-    }
 
     private fun sendRequest(offSet: Int) {
         homeViewModel.fetchPokemonList(offSet, LIMIT_PER_REQUEST)

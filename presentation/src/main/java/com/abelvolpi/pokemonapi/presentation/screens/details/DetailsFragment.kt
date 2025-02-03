@@ -92,6 +92,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
                     is UiState.Loading -> showLoadingState()
                     is UiState.Success -> updateScreen(state.data)
                     is UiState.Failure -> showErrorFeedback()
+                    else -> {}
                 }
             }
         }

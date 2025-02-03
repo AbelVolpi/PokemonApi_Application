@@ -35,6 +35,8 @@ class HomeViewModel @Inject constructor(
                 _pokemonList.addAll(response.results)
             } catch (e: Throwable) {
                 _newPokemonsListState.value = UiState.Failure(e)
+            } finally {
+                _newPokemonsListState.value = UiState.Finished
             }
         }
     }
