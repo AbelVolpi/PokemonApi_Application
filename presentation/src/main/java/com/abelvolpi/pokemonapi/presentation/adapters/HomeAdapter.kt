@@ -17,7 +17,7 @@ class HomeAdapter(
     private val onPokemonClick: (GenericPokemonUiModel?, CustomImage?, ImageView) -> Unit
 ) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
-    private val pokemonList = arrayListOf<GenericPokemonUiModel>()
+    private val pokemonList = LinkedHashSet<GenericPokemonUiModel>()
 
     inner class ViewHolder(private val binding: HomeAdapterItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -49,7 +49,7 @@ class HomeAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(
-            pokemonList[position]
+            pokemonList.elementAt(position)
         )
     }
 
