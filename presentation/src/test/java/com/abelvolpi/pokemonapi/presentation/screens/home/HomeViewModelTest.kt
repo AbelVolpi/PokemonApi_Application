@@ -44,7 +44,7 @@ class HomeViewModelTest {
         coEvery { getPokemonListUseCase.invoke(offset, limit) } returns mockResponse
 
         // When
-        homeViewModel.fetchPokemonList(offset, limit)
+        homeViewModel.fetchPokemonList()
 
         // Then
         assert(homeViewModel.newPokemonsListState.value == UiState.Loading)
@@ -62,7 +62,7 @@ class HomeViewModelTest {
         coEvery { getPokemonListUseCase.invoke(offset, limit) } throws exception
 
         // When
-        homeViewModel.fetchPokemonList(offset, limit)
+        homeViewModel.fetchPokemonList()
 
         // Then
         assert(homeViewModel.newPokemonsListState.value == UiState.Loading)

@@ -14,6 +14,7 @@ Android Development.
 - [🚂 CI/CD](#-cicd)
 - [🧪 Unit Tests & Code Coverage](#-unit-tests--code-coverage)
 - [⚙️ UI Tests](#%EF%B8%8F-uiinstrumented-tests)
+- [🚧 Next steps](#-next-steps--work-in-progress)
 
 ## 📱 UI & Features
 
@@ -149,8 +150,9 @@ To run:
 ./gradlew app:connectedAndroidTest
 ```
 
-## 🚧 Next steps & work in progress:
+## 🚧 Next steps & work in progress
 
 - Integrate UI tests in code coverage
 - Integrate UI tests in CI
 - Migrate to modularization by feature
+- Add swipe to refresh

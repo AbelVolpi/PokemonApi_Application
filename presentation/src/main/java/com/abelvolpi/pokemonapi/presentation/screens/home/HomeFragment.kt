@@ -1,7 +1,6 @@
 package com.abelvolpi.pokemonapi.presentation.screens.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.view.doOnPreDraw
@@ -18,7 +17,6 @@ import com.abelvolpi.pokemonapi.presentation.databinding.FragmentHomeBinding
 import com.abelvolpi.pokemonapi.presentation.models.CustomImage
 import com.abelvolpi.pokemonapi.presentation.models.GenericPokemonUiModel
 import com.abelvolpi.pokemonapi.presentation.screens.BaseFragment
-import com.abelvolpi.pokemonapi.presentation.utils.Constants.LIMIT_PER_REQUEST
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -33,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sendRequest(homeViewModel.offSet)
+        sendRequest()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,7 +75,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             if (homeViewModel.newPokemonsListState.value != UiState.Loading &&
                                 (visibleCount + pastVisibleItems) >= totalItemCount
                             ) {
-                                sendRequest(homeViewModel.offSet)
+                                sendRequest()
                             }
                             super.onScrolled(recyclerView, dx, dy)
                         }
@@ -93,30 +91,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 when (state) {
                     is UiState.Loading -> {}
                     is UiState.Success -> {
-                        handleSuccessState(state.data.results)
+                        populateUI(state.data.results)
                     }
                     is UiState.Failure -> {
-                        Log.e("HOME_ERROR", state.exception.toString())
+                        showErrorMessage()
                     }
                 }
             }
         }
     }
 
-    private fun handleSuccessState(pokemonList: List<GenericPokemonUiModel>) {
-        if (verifyIsNewPokemonBatch(pokemonList)) {
-            pokemonAdapter.addMorePokemon(pokemonList)
-            homeViewModel.offSet += LIMIT_PER_REQUEST
+    private fun populateUI(pokemonList: List<GenericPokemonUiModel>) {
+        pokemonAdapter.addMorePokemon(pokemonList)
+    }
+
+    private fun showErrorMessage() {
+        binding?.run {
+            errorMessageTextView.visibility = View.VISIBLE
         }
     }
 
-    private fun verifyIsNewPokemonBatch(results: List<GenericPokemonUiModel>): Boolean {
-        val firstPokemon = results.firstOrNull() ?: return false
-        return homeViewModel.pokemonList.none { it.number == firstPokemon.number }
-    }
-
-    private fun sendRequest(offSet: Int) {
-        homeViewModel.fetchPokemonList(offSet, LIMIT_PER_REQUEST)
+    private fun sendRequest() {
+        homeViewModel.fetchPokemonList()
     }
 
     private fun onPokemonClick(
